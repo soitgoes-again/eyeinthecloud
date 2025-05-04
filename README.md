@@ -2,7 +2,7 @@
 
 This userscript adds some much-needed controls and tweaks to Google's AI Studio.
 
-Installs like any other userscript via Tampermonkey/Violentmonkey etc. 
+Installs like any other userscript via Tampermonkey/Violentmonkey etc. Use combined-user.js for everything in one place (except CSS).
 
 [GreasyFork Link](https://greasyfork.org/en/scripts/534885-eye-in-the-cloud-a-google-ai-studio-focused-experience)
 

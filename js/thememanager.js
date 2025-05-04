@@ -98,7 +98,6 @@ window.ThemeManager = {
         }
         const resourceName = window.State.themeResourceNames[themeName];
         if (!resourceName) {
-            console.error(`AC Script: Resource name for theme '${themeName}' not found.`);
             return;
         }
 
@@ -109,10 +108,9 @@ window.ThemeManager = {
             const cssText = GM_getResourceText(resourceName);
             if (cssText) {
                 // IMPORTANT: Theme CSS should ONLY contain variable overrides now
-                console.log(`AC Script: Injecting CSS for theme '${themeName}' from resource '${resourceName}'`);
                 this.styleElements[themeName] = GM_addStyle(cssText);
             } else {
-                console.error(`AC Script: Failed to get CSS text for resource '${resourceName}' (Theme: ${themeName}). Is Tampermonkey allowed to access file URLs?`);
+                return;
             }
         } else {
             this.styleElements[themeName].disabled = false; // Re-enable if previously disabled
@@ -130,7 +128,6 @@ window.ThemeManager = {
 
         window.State.activeTheme = themeName;
         window.Settings.update('activeTheme', themeName); // Use Settings.update to handle saving
-        console.log(`AC Script: Applied theme '${themeName}'`);
 
         // Update Popup UI if visible
         if (window.State.popupElement?.classList.contains('visible') && window.Popup) {
@@ -140,7 +137,6 @@ window.ThemeManager = {
     removeActiveTheme() {
         // --- Re-enable this function ---
         if (!window.State.activeTheme) {
-            console.log("[Theme] No active theme to remove");
             return;
         }
         const currentTheme = window.State.activeTheme;
@@ -159,7 +155,6 @@ window.ThemeManager = {
     removeActiveThemeClasses() {
         // Ensure class is removed ONLY from body if that's where applyTheme adds it
         document.body.classList.remove('theme-dos-applied', 'theme-nature-applied');
-        console.log("[Theme] Removed all theme classes from body");
     }
 };
 

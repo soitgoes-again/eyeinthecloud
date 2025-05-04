@@ -61,9 +61,7 @@
                         window.InputLagFix.init();
                     }
                 }
-            } catch (error) {
-                console.error("AC Script: Error controlling InputLagFix button visibility:", error);
-            }
+            } catch (error) {}
             // --- END: Input Lag Fix Button Visibility Control ---
 
             // Always call all UI update functions on DOM change
@@ -80,13 +78,10 @@
                     const newDisclaimerText = "This reality is for testing only. No production use.";
                     // Only update if the text is different to avoid unnecessary changes
                     if (disclaimerSpan.textContent.trim() !== newDisclaimerText) {
-                        console.log("AC Script: Updating disclaimer text."); // Optional log
                         disclaimerSpan.textContent = newDisclaimerText;
                     }
                 }
-            } catch (error) {
-                console.error("AC Script: Error modifying disclaimer text:", error);
-            }
+            } catch (error) {}
             // --- END: Disclaimer Text Modification ---
 
             if (window.UI) {
@@ -104,12 +99,10 @@
                         const valueDisplay = window.State.popupElement.querySelector('#num-turns-value');
                         if (slider && valueDisplay) {
                             if (parseInt(slider.max) !== maxExchanges) {
-                                // console.log(`AC Script: Updating slider max from ${slider.max} to ${maxExchanges}`);
                                 slider.max = maxExchanges;
                             }
                             let currentValue = parseInt(slider.value);
                             if (currentValue > maxExchanges) {
-                                // console.log(`AC Script: Capping slider value from ${currentValue} to ${maxExchanges}`);
                                 slider.value = maxExchanges;
                                 // Only update value display if NOT in VIBE mode and limiting is ON
                                 if (!window.State.isVibeModeActive && window.State.settings.limitHistory) {

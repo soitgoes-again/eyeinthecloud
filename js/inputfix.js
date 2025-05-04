@@ -181,7 +181,6 @@
         },
 
         showModal() {
-            console.log('AC Script: InputLagFix.showModal() called.'); // Add this log
             if (!this.modalElement) this.createModal(); // Ensure it exists
             if (!this.modalElement) return; // Bail if creation failed
 
@@ -193,7 +192,6 @@
         },
 
         hideModal() {
-            console.log('AC Script: InputLagFix.hideModal() called.'); // Add log
             if (this.modalElement) {
                 this.modalElement.classList.remove('visible');
             }
@@ -203,18 +201,15 @@
 
         // Bind 'this' correctly or use arrow function
         handleEscKey: (event) => {
-            console.log('AC Script: Keydown event detected:', event.key); // Add log
             if (event.key === 'Escape') {
                  // Check if 'this' refers to InputLagFix object
                  if (window.InputLagFix && window.InputLagFix.modalElement?.classList.contains('visible')) { // New check
-                      console.log('AC Script: Escape key pressed, calling handleCancel.'); // Add log
                       window.InputLagFix.handleCancel();
                  }
             }
         },
 
         handleCancel() {
-            console.log('AC Script: InputLagFix.handleCancel() called.'); // Add log
              if (!this.modalTextarea) return;
             this.persistentModalText = this.modalTextarea.value; // Save text
             this.hideModal();

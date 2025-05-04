@@ -157,7 +157,6 @@ window.Popup = {
             className: 'theme-select-button',
             title: 'DOS Terminal Theme',
             events: { click: () => {
-                console.log('[Theme] DOS theme button clicked. Current activeTheme:', State.activeTheme);
                 window.Popup.handleThemeButtonClick('dos');
             }}
         }, [window.DOM.createElement('span', {className: 'material-symbols-outlined notranslate', textContent: 'code'})]);
@@ -167,7 +166,6 @@ window.Popup = {
             className: 'theme-select-button',
             title: 'Light Nature Theme',
             events: { click: () => {
-                console.log('[Theme] Nature theme button clicked. Current activeTheme:', State.activeTheme);
                 window.Popup.handleThemeButtonClick('nature');
             }}
         }, [window.DOM.createElement('span', {className: 'material-symbols-outlined notranslate', textContent: 'eco'})]); // or 'grass'
@@ -253,22 +251,17 @@ window.Popup = {
         });
         if (headerDiv && inputField) {
             headerDiv.replaceChild(titleDisplay, inputField);
-        } else {
-            console.error('AC Script: Could not replace title input.');
         }
     },
     /**
      * Show the popup dialog
      */
     show() {
-        console.log("AC Script: Popup.show() called.");
         if (!State.popupElement) {
-            console.log("AC Script: Popup element doesn't exist, calling create().");
             this.create();
         }
         
         // Remove call to Styles.addPopupStyles() - rely only on custom.css
-        console.log("AC Script: Using only custom.css for popup styling");
         
         this.updateUIState();
         const blurOverlay = document.createElement('div');
@@ -404,9 +397,7 @@ window.Popup = {
                      // Set max to at least 1, even if there are 0 AI turns, to avoid range errors.
                      maxExchanges = Math.max(1, aiTurns.length);
                  }
-            } catch (error) {
-                 console.error("AC Script: Error querying AI turns for slider max:", error);
-            }
+            } catch (error) {}
             // Only update if the max value is actually different
             if (parseInt(turnsSlider.max) !== maxExchanges) {
                 turnsSlider.max = maxExchanges;
@@ -495,9 +486,7 @@ window.Popup = {
                 const range = currentMax - currentMin;
                 const currentPercentage = (range > 0) ? (((currentValue - currentMin) / range) * 100) : 0;
                 turnsSlider.style.setProperty('--_slider-fill-percent', `${currentPercentage}%`);
-            } catch (err) {
-                console.error("AC Script: Error updating slider track fill:", err);
-            }
+            } catch (err) {}
         }
     }
 };

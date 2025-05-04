@@ -28,12 +28,11 @@
                     if (customCSSText) {
                         this.customStyleElement = GM_addStyle(customCSSText);
                         baseStylesInjected = true;
-                        console.log("AC Script: Custom component styles injected.");
                     } else {
-                        console.error("AC Script: Failed to load CUSTOM_CSS resource!");
+                        // Handle failure to load CUSTOM_CSS resource
                     }
                 } catch (e) {
-                    console.error("AC Script: Error injecting base styles:", e);
+                    // Handle error injecting base styles
                 }
             }
 
@@ -47,27 +46,24 @@
             if (!this.themeManagerInitialized && window.ThemeManager) {
                 window.ThemeManager.loadThemes();
                 
-                console.log("[App] ThemeManager initialized.");
                 this.themeManagerInitialized = true; // Mark as initialized HERE
                 
                 // --- *** APPLY SAVED THEME ON LOAD *** ---
                 const savedTheme = window.State.settings.activeTheme; // Get loaded theme pref
                 
                 if (savedTheme && typeof window.ThemeManager.applyTheme === 'function') {
-                    console.log(`[App] Applying saved theme: ${savedTheme}`);
                     try {
                         // Apply the saved theme
                         window.ThemeManager.applyTheme(savedTheme);
                         // Note: applyTheme now handles saving this state again via Settings.update,
                         // which is slightly redundant on load but harmless.
-                        console.log(`[App] Applied saved theme '${savedTheme}'.`);
                     } catch (error) {
-                        console.error(`[App] Error applying saved theme '${savedTheme}':`, error);
+                        // Handle error applying saved theme
                         // Optionally clear the bad setting if apply fails
                         // window.Settings.update('activeTheme', null);
                     }
                 } else if (savedTheme) {
-                    console.warn(`[App] Could not apply saved theme '${savedTheme}'. ThemeManager.applyTheme not available?`);
+                    // Handle inability to apply saved theme
                 }
                 // --- *** END OF APPLY SAVED THEME *** ---
             }

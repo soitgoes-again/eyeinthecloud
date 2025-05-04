@@ -1,0 +1,573 @@
+/* eyeinthecloud.custom.css (Refined) */
+
+:root {
+  /* --- Define DEFAULT EIC Theme (Dark Theme Base) --- */
+  /* These act as fallbacks if no theme CSS is active */
+  /* Base Palette (can be simple, themes override these) */
+  --eic-primary-default: #8ab4f8;
+  --eic-on-primary-default: #202124;
+  --eic-surface-default: #2a2a2a;
+  --eic-on-surface-default: #ffffff;
+  --eic-surface-variant-default: #303134;
+  --eic-on-surface-variant-default: #bdc1c6;
+  --eic-outline-default: #5f6368;
+  --eic-outline-variant-default: #44474a;
+  --eic-error-default: #f28b82;
+  --eic-on-error-default: #202124;
+
+  /* Font & Shape Defaults */
+  --eic-font-family-default: 'Google Sans', Roboto, Arial, sans-serif;
+  --eic-shape-radius-small-default: 4px;
+  --eic-shape-radius-medium-default: 8px;
+  --eic-shape-radius-large-default: 12px;
+
+  /* --- EIC Component Variables --- */
+  /* These now reference the defaults above OR will be overridden by themes */
+  /* Popup Variables */
+  --eic-primary: var(--eic-primary-default);
+  --eic-on-primary: var(--eic-on-primary-default);
+  --eic-surface: var(--eic-surface-default);
+  --eic-on-surface: var(--eic-on-surface-default);
+  --eic-surface-variant: var(--eic-surface-variant-default);
+  --eic-on-surface-variant: var(--eic-on-surface-variant-default);
+  --eic-outline: var(--eic-outline-default);
+  --eic-outline-variant: var(--eic-outline-variant-default);
+  --eic-error: var(--eic-error-default);
+  --eic-on-error: var(--eic-on-error-default);
+  --eic-font-family: var(--eic-font-family-default);
+  --eic-shape-radius-small: var(--eic-shape-radius-small-default);
+  --eic-shape-radius-medium: var(--eic-shape-radius-medium-default);
+  --eic-shape-radius-large: var(--eic-shape-radius-large-default);
+
+  /* Derived Popup Component Variables */
+  --eic-popup-bg: var(--eic-surface);
+  --eic-popup-fg: var(--eic-on-surface);
+  --eic-popup-border: var(--eic-outline);
+  --eic-popup-divider: var(--eic-outline-variant); /* Use variant */
+  --eic-popup-accent: var(--eic-primary);
+  --eic-popup-secondary-fg: var(--eic-on-surface-variant);
+  --eic-popup-hover-bg: var(--eic-surface-variant); /* Use variant for hover */
+
+  /* Vibe Button */
+  --eic-popup-vibe-idle-fg: var(--eic-popup-accent);
+  --eic-popup-vibe-idle-border: var(--eic-popup-accent);
+  --eic-popup-vibe-idle-bg: transparent;
+  --eic-popup-vibe-hover-bg: color-mix(in srgb, var(--eic-popup-accent) 15%, transparent);
+  --eic-popup-vibe-active-fg: var(--eic-on-primary);
+  --eic-popup-vibe-active-bg: var(--eic-popup-accent);
+  --eic-popup-vibe-active-border: var(--eic-popup-accent);
+
+  /* Theme Button */
+  --eic-popup-theme-idle-fg: var(--eic-popup-secondary-fg);
+  --eic-popup-theme-idle-bg: transparent;
+  --eic-popup-theme-idle-border: var(--eic-popup-divider);
+  --eic-popup-theme-hover-bg: var(--eic-popup-hover-bg);
+  --eic-popup-theme-hover-border: var(--eic-popup-secondary-fg); /* Or accent? */
+  --eic-popup-theme-active-fg: var(--eic-on-primary);
+  --eic-popup-theme-active-bg: var(--eic-popup-accent);
+  --eic-popup-theme-active-border: var(--eic-popup-accent);
+
+  /* Toggle Switch */
+  --eic-popup-toggle-off-bg: var(--eic-outline-default);         /* Off Track: Use default outline grey (#5f6368) */
+  --eic-popup-toggle-on-bg: var(--eic-primary-default);          /* On Track: Use default primary blue (#8ab4f8) */
+  --eic-popup-toggle-knob-bg: var(--eic-on-surface-variant-default); /* Off Knob: Use default secondary text grey (#bdc1c6) */
+  --eic-popup-toggle-knob-checked-bg: var(--eic-on-surface-variant-default);    /* On Knob: using same as above with content change inside */
+  --eic-popup-toggle-knob-fg: var(--eic-surface-default); /* Dark icon color for OFF state */
+  --eic-popup-toggle-knob-checked-fg: var(--eic-surface-default); /* Dark icon color for ON state */
+
+  /* Modal Variables */
+  --eic-modal-overlay-bg: rgba(0, 0, 0, 0.6);
+  --eic-modal-content-bg: var(--eic-surface);
+  --eic-modal-content-border: var(--eic-outline);
+  --eic-modal-textarea-bg: rgba(255, 255, 255, 0.05); /* Keep distinct default */
+  --eic-modal-textarea-fg: var(--eic-on-surface);
+  --eic-modal-textarea-border: var(--eic-outline-variant);
+  --eic-modal-button-bg: var(--eic-surface-variant);
+  --eic-modal-button-fg: var(--eic-on-surface-variant);
+  --eic-modal-button-border: var(--eic-outline);
+  --eic-modal-button-hover-bg: var(--eic-outline); /* Or mix with surface? */
+  --eic-modal-send-button-bg: var(--eic-primary);
+  --eic-modal-send-button-fg: var(--eic-on-primary);
+  --eic-modal-send-button-border: var(--eic-primary);
+  --eic-modal-send-button-hover-bg: color-mix(in srgb, var(--eic-primary) 85%, black);
+
+  /* Add some variables for closer replication */
+  --eic-gmat-body-medium-size: 13px; /* Approx based on inspection */
+  --eic-gmat-body-medium-weight: 400;
+  --eic-gmat-title-small-size: 14px; /* Approx */
+  --eic-gmat-title-small-weight: 500;
+  --eic-control-padding-vertical: 8px; /* Approx */
+  --eic-control-padding-horizontal: 12px; /* Approx */
+  --eic-item-gap: 16px; /* Space between settings items */
+  --eic-section-padding-bottom: 16px;
+}
+
+/* --- Structural Styles for Popups, Modal, Button --- */
+/* (Keep all the #advanced-control-popup {...}, #adv-input-modal-overlay {...}, etc. rules */
+/*  exactly as they are. They define layout and *use* the --eic-* vars) */
+
+#advanced-control-popup {
+    position: fixed; top: 50%; left: 50%; z-index: 9999;
+    width: 340px; /* Slightly wider */
+    max-width: 90vw; max-height: 85vh; overflow-y: auto;
+    border-radius: var(--eic-shape-radius-medium); /* Keep rounding */
+    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+                0 3px 14px 2px rgba(0, 0, 0, 0.12),
+                0 5px 5px -3px rgba(0, 0, 0, 0.2);
+    font-family: var(--eic-font-family);
+    background-color: var(--eic-popup-bg); /* Use variable */
+    color: var(--eic-popup-fg); /* Use variable */
+    border: 1px solid var(--eic-popup-border); /* Use variable */
+    display: block; opacity: 0; visibility: hidden;
+    transform: translate(-50%, -50%) scale(0.95);
+    transition: opacity 0.25s ease-out, transform 0.25s ease-out, visibility 0s linear 0.25s;
+}
+#advanced-control-popup.visible {
+    opacity: 1; visibility: visible; transform: translate(-50%, -50%) scale(1);
+    transition-delay: 0s;
+}
+#advanced-control-popup .popup-header {
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid var(--eic-popup-divider);
+    padding: var(--eic-control-padding-vertical) var(--eic-control-padding-horizontal) var(--eic-control-padding-vertical) 16px;
+    min-height: 48px;
+    box-sizing: border-box;
+}
+#advanced-control-popup .popup-title {
+    font-size: var(--eic-gmat-title-small-size);
+    font-weight: var(--eic-gmat-title-small-weight);
+    margin: 0;
+    color: var(--eic-popup-fg);
+    line-height: 1.5;
+}
+#advanced-control-popup .popup-editable-title {
+    flex-grow: 1; padding: 0; margin-right: 10px; border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease; line-height: inherit; cursor: text;
+}
+#advanced-control-popup .popup-editable-title:hover,
+#advanced-control-popup .popup-editable-title:focus {
+    border-bottom-color: color-mix(in srgb, var(--eic-popup-fg) 50%, transparent); outline: none;
+}
+#advanced-control-popup .popup-title-input {
+    flex-grow: 1; margin-right: 10px; border: none;
+    border-bottom: 1px solid var(--eic-popup-accent); background-color: transparent;
+    color: inherit; font-size: inherit; font-weight: inherit; padding: 0;
+    outline: none; border-radius: 0; line-height: inherit;
+}
+#advanced-control-popup .close-popup-button {
+    background: transparent; border: none; color: var(--eic-popup-secondary-fg);
+    font-size: 24px; cursor: pointer; padding: 0 4px;
+    display: flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+}
+#advanced-control-popup .close-popup-button:hover {
+    color: var(--eic-popup-fg);
+    background-color: var(--eic-popup-hover-bg);
+}
+#advanced-control-popup .popup-content {
+    padding: var(--eic-item-gap) 16px;
+    display: flex; flex-direction: column;
+    gap: var(--eic-section-padding-bottom);
+}
+#advanced-control-popup .popup-section {
+    border: none;
+    padding: 0; margin: 0;
+    display: flex; flex-direction: column;
+    gap: var(--eic-item-gap);
+}
+#advanced-control-popup legend {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 0 0 8px 0;
+    color: var(--eic-popup-secondary-fg);
+    border: none;
+    border-bottom: 1px solid var(--eic-popup-divider);
+    margin: 0 0 var(--eic-item-gap) 0;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+}
+#advanced-control-popup .vibe-section { gap: 0; }
+#advanced-control-popup .vibe-button {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 8px;
+    padding: 0 var(--eic-control-padding-horizontal);
+    height: 36px;
+    border-radius: var(--eic-shape-radius-small);
+    cursor: pointer;
+    font-weight: var(--eic-gmat-title-small-weight);
+    font-size: var(--eic-gmat-title-small-size);
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+    border: 1px solid var(--eic-popup-vibe-idle-border);
+    background-color: var(--eic-popup-vibe-idle-bg);
+    color: var(--eic-popup-vibe-idle-fg);
+    width: 100%; box-sizing: border-box;
+    text-transform: none;
+}
+#advanced-control-popup .vibe-button .material-symbols-outlined {
+    font-size: 18px;
+    color: inherit;
+}
+#advanced-control-popup .vibe-button:hover {
+    background-color: var(--eic-popup-vibe-hover-bg);
+}
+#advanced-control-popup .vibe-button.active {
+    background-color: var(--eic-popup-vibe-active-bg);
+    color: var(--eic-popup-vibe-active-fg);
+    border-color: var(--eic-popup-vibe-active-border);
+}
+#advanced-control-popup .theme-buttons-container {
+    display: flex; gap: 10px; justify-content: space-around;
+}
+#advanced-control-popup .theme-select-button {
+    flex: 0 0 auto;
+    display: flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px;
+    padding: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+    border: 1px solid var(--eic-popup-theme-idle-border);
+    background-color: var(--eic-popup-theme-idle-bg);
+    color: var(--eic-popup-theme-idle-fg);
+}
+#advanced-control-popup .theme-select-button .material-symbols-outlined {
+    font-size: 20px; color: inherit;
+}
+#advanced-control-popup .theme-select-button:hover {
+    background-color: var(--eic-popup-theme-hover-bg);
+    border-color: var(--eic-popup-theme-hover-border);
+    color: var(--eic-popup-fg);
+}
+#advanced-control-popup .theme-select-button.active {
+    background-color: var(--eic-popup-theme-active-bg);
+    color: var(--eic-popup-theme-active-fg);
+    border-color: var(--eic-popup-theme-active-border);
+}
+
+/* --- Toggle Switch Replication (Revised) --- */
+/* Container for label + switch */
+.toggle-setting {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Keep label and switch apart */
+    min-height: 40px; /* Ensure enough space for vertical alignment */
+    /* Remove margin if handled by .popup-section gap */
+    margin-bottom: 0;
+    padding: 4px 0; /* Add slight vertical padding */
+}
+
+/* Label Text */
+.toggle-label {
+    font-size: var(--eic-gmat-body-medium-size);
+    font-weight: var(--eic-gmat-body-medium-weight);
+    color: var(--eic-popup-fg);
+    padding-right: 16px; /* More space before switch */
+    cursor: pointer;
+    user-select: none;
+    flex-grow: 1;
+}
+
+/* The hidden checkbox input */
+.basic-slide-toggle {
+    appearance: none;
+    -webkit-appearance: none;
+    position: relative;
+    width: 36px; /* Width of the track area */
+    height: 14px; /* Height of the track area */
+    border-radius: 7px; /* Fully rounded track */
+    background-color: var(--eic-popup-toggle-off-bg) !important; /* Track color when OFF */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    flex-shrink: 0;
+    margin: 0; /* Reset margin */
+    outline: none; /* Remove default focus outline */
+    vertical-align: middle; /* Align better with label */
+}
+
+/* The sliding handle (Knob) - WITH ICONS */
+.basic-slide-toggle::before {
+    content: '-'; /* Default content is minus sign */
+    position: absolute;
+    width: 20px; /* Diameter of the handle */
+    height: 20px; /* Diameter of the handle */
+    border-radius: 50%; /* Circular handle */
+    background-color: var(--eic-popup-toggle-knob-bg); /* Handle color when OFF (now light grey) */
+    color: var(--eic-popup-toggle-knob-fg); /* Icon color when OFF (now dark) */
+    left: -2px; /* Start slightly overlapping left edge */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%);
+    transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 1px 1px rgba(0,0,0,0.14); /* Material elevation */
+
+    /* Styles for centering the icon text */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 16px; /* Adjust size as needed */
+    line-height: 1; /* Use flex alignment instead */
+    text-align: center;
+    padding-bottom: 1px; /* Minor visual centering adjustment for symbols */
+}
+
+/* Checked State: Track Color */
+.basic-slide-toggle:checked {
+    background-color: var(--eic-popup-toggle-on-bg) !important; /* Track color when ON */
+}
+
+/* Checked State: Handle Color, Position & ICON */
+.basic-slide-toggle:checked::before {
+    content: '\2713'; /* Content is checkmark (✓) */
+    background-color: var(--eic-popup-toggle-knob-checked-bg); /* Handle color when ON (now light grey) */
+    color: var(--eic-popup-toggle-knob-checked-fg); /* Icon color when ON (now dark) */
+    transform: translate(18px, -50%); /* Slide handle right */
+}
+
+/* Focus State: Add a subtle ring around the track */
+.basic-slide-toggle:focus-visible {
+     box-shadow: 0 0 0 2px color-mix(in srgb, var(--eic-popup-accent) 30%, transparent);
+}
+
+/* Disabled State */
+.basic-slide-toggle:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.basic-slide-toggle:disabled::before {
+    background-color: var(--eic-outline-variant); /* Use a disabled color */
+    box-shadow: none;
+}
+.basic-slide-toggle:disabled:checked {
+     background-color: color-mix(in srgb, var(--eic-popup-toggle-on-bg) 40%, var(--eic-surface)); /* Dimmed ON track */
+}
+.basic-slide-toggle:disabled:checked::before {
+    background-color: var(--eic-surface); /* Use surface color for disabled checked handle */
+}
+
+.slider-container {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+}
+.slider-container label {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--eic-gmat-body-medium-size);
+    color: var(--eic-popup-fg);
+    margin-bottom: 4px;
+}
+.slider-container #num-turns-value {
+    font-weight: 500;
+    color: var(--eic-popup-accent);
+}
+#advanced-control-popup .slider-container input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 18px;
+    background: transparent;
+    cursor: pointer;
+    margin: 4px 0;
+    padding: 0;
+    outline: none;
+    --_slider-fill-percent: 50%;
+}
+#advanced-control-popup .slider-container input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 4px;
+    cursor: pointer;
+    background: linear-gradient(to right,
+        var(--eic-popup-accent) 0%,
+        var(--eic-popup-accent) var(--_slider-fill-percent),
+        var(--eic-outline-variant) var(--_slider-fill-percent),
+        var(--eic-outline-variant) 100%);
+    border-radius: 2px;
+    border: none;
+}
+#advanced-control-popup .slider-container input[type="range"]::-moz-range-track {
+    width: 100%;
+    height: 4px;
+    cursor: pointer;
+    background: linear-gradient(to right,
+        var(--eic-popup-accent) 0%,
+        var(--eic-popup-accent) var(--_slider-fill-percent),
+        var(--eic-outline-variant) var(--_slider-fill-percent),
+        var(--eic-outline-variant) 100%);
+    border-radius: 2px;
+    border: none;
+}
+#advanced-control-popup .slider-container input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: var(--eic-popup-accent);
+    cursor: pointer;
+    margin-top: -6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+#advanced-control-popup .slider-container input[type="range"]::-moz-range-thumb {
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: var(--eic-popup-accent);
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+#advanced-control-popup .slider-container input[type="range"]:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+#advanced-control-popup .slider-container input[type="range"]:disabled::-webkit-slider-runnable-track {
+    background: linear-gradient(to right,
+        var(--eic-outline) 0%,
+        var(--eic-outline) var(--_slider-fill-percent),
+        var(--eic-outline-variant) var(--_slider-fill-percent),
+        var(--eic-outline-variant) 100%);
+    cursor: not-allowed;
+}
+#advanced-control-popup .slider-container input[type="range"]:disabled::-moz-range-track {
+    background: linear-gradient(to right,
+        var(--eic-outline) 0%,
+        var(--eic-outline) var(--_slider-fill-percent),
+        var(--eic-outline-variant) var(--_slider-fill-percent),
+        var(--eic-outline-variant) 100%);
+    cursor: not-allowed;
+}
+#advanced-control-popup .slider-container input[type="range"]:disabled::-webkit-slider-thumb {
+    background: var(--eic-outline);
+    cursor: not-allowed;
+}
+#advanced-control-popup .slider-container input[type="range"]:disabled::-moz-range-thumb {
+    background: var(--eic-outline);
+    cursor: not-allowed;
+}
+#advanced-control-popup .popup-section.disabled-by-vibe {
+    opacity: 0.5;
+    pointer-events: none;
+    user-select: none;
+}
+#adv-input-modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: 10005; display: flex; align-items: center; justify-content: center;
+    background-color: rgba(0, 0, 0, 0); opacity: 0; visibility: hidden;
+    transition: opacity 0.3s ease, background-color 0.3s ease, visibility 0s linear 0.3s;
+}
+#adv-input-modal-overlay.visible {
+    background-color: var(--eic-modal-overlay-bg); opacity: 1; visibility: visible; transition-delay: 0s;
+}
+#adv-input-modal-content {
+    width: 80%; height: 80%; max-width: 1000px; max-height: 700px;
+    display: flex; flex-direction: column; padding: 20px;
+    background-color: var(--eic-modal-content-bg);
+    border: 1px solid var(--eic-modal-content-border);
+    border-radius: var(--eic-shape-radius-medium);
+    font-family: var(--eic-font-family);
+    opacity: 0; transform: scale(0.9);
+    transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+}
+#adv-input-modal-overlay.visible #adv-input-modal-content {
+    opacity: 1; transform: scale(1);
+}
+#adv-input-modal-textarea {
+    flex-grow: 1; width: calc(100% - 20px);
+    background-color: var(--eic-modal-textarea-bg);
+    color: var(--eic-modal-textarea-fg);
+    border: 1px solid var(--eic-modal-textarea-border);
+    border-radius: var(--eic-shape-radius-small);
+    margin-bottom: 15px; padding: 10px; font-size: 1rem;
+    resize: none; outline: none; font-family: inherit;
+}
+#adv-input-modal-content .adv-modal-buttons {
+    display: flex; justify-content: flex-end; gap: 10px; margin-top: auto;
+}
+#adv-input-modal-content .adv-modal-buttons button {
+    padding: 8px 16px;
+    border-radius: var(--eic-shape-radius-small);
+    cursor: pointer; font-size: 0.9rem; transition: background-color 0.2s;
+    background-color: var(--eic-modal-button-bg);
+    color: var(--eic-modal-button-fg);
+    border: 1px solid var(--eic-modal-button-border);
+}
+#adv-input-modal-content .adv-modal-buttons button:hover {
+    background-color: var(--eic-modal-button-hover-bg);
+}
+#adv-input-modal-content .adv-modal-buttons button:last-child {
+    background-color: var(--eic-modal-send-button-bg);
+    color: var(--eic-modal-send-button-fg);
+    border-color: var(--eic-modal-send-button-border);
+    font-weight: 500;
+}
+#adv-input-modal-content .adv-modal-buttons button:last-child:hover {
+    background-color: var(--eic-modal-send-button-hover-bg);
+}
+
+/* --- Input Lag Fix Trigger Button Visibility --- */
+#adv-modal-trigger-btn.eic-hidden-by-default,
+#adv-modal-trigger-btn:not(.eic-visible) {
+    display: none !important; /* Hidden by default or if visible class is removed */
+}
+
+#adv-modal-trigger-btn.eic-visible {
+    display: inline-flex !important; /* Use inline-flex for proper button layout when visible */
+    /* Add any other necessary visible styles here if display alone isn't enough */
+    /* e.g., opacity: 1; */
+}
+
+/* Optional: Style the wrapper if needed for layout */
+/* .prompt-input-wrapper-container .button-wrapper:has(#adv-modal-trigger-btn) {
+    order: -1; // Try to move it earlier visually if appending to end looks bad
+} */
+
+/* --- UI Hiding Classes (Keep these) --- */
+.adv-controls-hide-ui-sidebars ms-navbar,
+.adv-controls-hide-ui-sidebars ms-right-side-panel {
+  display: none !important;
+}
+.adv-controls-hide-ui-header ms-header-root {
+  display: none !important;
+}
+.adv-controls-hide-ui-toolbar ms-toolbar {
+  display: none !important;
+}
+
+.adv-controls-real-input-hidden {
+    visibility: hidden !important;
+    position: absolute !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+}
+
+#advanced-control-toggle-button {
+    position: fixed !important;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10001;
+    background-color: var(--eic-surface);
+    color: var(--eic-on-surface-variant);
+    border: 1px solid var(--eic-outline);
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    opacity: 0.8;
+    transition: opacity 0.2s, background-color 0.2s, color 0.2s;
+}
+#advanced-control-toggle-button:hover {
+    opacity: 1;
+    background-color: var(--eic-surface-variant);
+    color: var(--eic-on-surface);
+}
+#advanced-control-toggle-button .material-symbols-outlined {
+    color: inherit;
+}

@@ -1,12 +1,4 @@
-// ==UserScript==
-// @name         AI Studio - UI Module
-// @namespace    http://tampermonkey.net/
-// @version      1.0
-// @description  UI Control Module for AI Studio Advanced Control Suite
-// @author       You & Gemini
-// @match        https://aistudio.google.com/*
-// @grant        none
-// ==/UserScript==
+
 
 (function() {
     'use strict';

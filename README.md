@@ -2,7 +2,9 @@
 
 This userscript adds some much-needed controls and tweaks to Google's AI Studio.
 
-Installs like any other userscript via Tampermonkey/Violentmonkey etc. Find the raw `.user.js` file link for your manager.
+Installs like any other userscript via Tampermonkey/Violentmonkey etc. 
+
+[GreasyFork Link](https://greasyfork.org/en/scripts/534885-eye-in-the-cloud-a-google-ai-studio-focused-experience)
 
 ## What it Does:
 

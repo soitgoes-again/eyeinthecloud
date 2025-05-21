@@ -1,0 +1,228 @@
+/* === modal-promptcomposer.css === */
+/* Styles for the Prompt Composer Modal and its internal components:
+   - Overlay: #adv-input-modal-overlay (inherits base from main.css .eic-modal-overlay)
+   - Content Box: #adv-input-modal-content
+   - Snippet Toolbar: .snippet-toolbar-container and its children (.snippet-button, etc.)
+   - Main Text Area: #adv-input-modal-textarea
+   - Bottom Action Buttons: .adv-modal-buttons and buttons within
+   - Snippet Slide-out Panel: #eic-snippet-slide-panel and its children
+ */
+
+/* --- Component-specific variables --- */
+:root {
+    /* Heights used to position the slide panel correctly */
+    --snippet-toolbar-height: 52px;  /* Height of the toolbar including border */
+    --snippet-footer-height: 60px;   /* Height of the footer buttons area including border */
+}
+
+/* --- Prompt Composer Modal Overlay --- */
+/* Uses .eic-modal-overlay base from main.css */
+#adv-input-modal-overlay {
+    /* Specific ID for this overlay */
+    /* Base styles inherited from .eic-modal-overlay in main.css */
+    /* Use a slightly different background if needed */
+    /* background-color: var(--eic-global-scrim); */
+    z-index: var(--eic-z-layer-modal-priority-overlay); /* Using z-index variable from main.css */
+}
+
+/* --- Prompt Composer Modal Content Container --- */
+#adv-input-modal-content {
+    /* Container for toolbar, textarea, buttons, slide panel */
+    position: relative; /* Needed for absolute positioning of slide panel */
+    width: 80%; /* Keep previous sizing */
+    height: 80%;
+    max-width: 1000px;
+    max-height: 700px;
+    display: flex;
+    flex-direction: column;
+    padding: 0; /* Remove padding, manage spacing internally */
+    background-color: var(--eic-global-surface);
+    border: 1px solid var(--eic-global-outline);
+    border-radius: var(--eic-global-shape-radius-large);
+    font-family: var(--eic-global-font-family);
+    color: var(--eic-global-on-surface);
+    box-shadow: 0 6px 20px var(--eic-global-shadow);
+    opacity: 0; transform: scale(0.95); /* Slight scale for transition */
+    transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+    overflow: hidden; /* Prevent slide panel from visually overflowing */
+}
+#adv-input-modal-overlay.visible #adv-input-modal-content {
+    opacity: 1; transform: scale(1);
+}
+
+/* --- Snippet Toolbar --- */
+.snippet-toolbar-container {
+    display: flex; /* Main bar and More button side-by-side */
+    align-items: center;
+    gap: var(--eic-item-gap);
+    padding: var(--eic-control-padding-vertical) var(--eic-control-padding-horizontal);
+    width: 100%;
+    box-sizing: border-box;
+    flex-shrink: 0; /* Prevent shrinking */
+    border-bottom: 1px solid var(--eic-global-outline-variant);
+    background-color: var(--eic-global-surface); /* Match modal bg */
+    height: var(--snippet-toolbar-height); /* Set height to match the variable */
+}
+.snippet-main-toolbar-bar {
+    display: flex;
+    flex-wrap: nowrap; /* Prevent main buttons from wrapping */
+    gap: 8px; /* Keep at 8px since it's for tight toolbar spacing */
+    overflow: hidden; /* Hide buttons that don't fit */
+    flex-grow: 1; /* Allow this bar to take available space */
+    align-items: center;
+}
+.snippet-toolbar-container .snippet-button { /* Target snippet buttons ONLY within this toolbar */
+    /* Uses .eic-button base */
+    /* Overrides: */
+    padding: calc(var(--eic-control-padding-vertical) * 0.75) calc(var(--eic-control-padding-horizontal) * 0.8);
+    background-color: var(--eic-global-surface-variant);
+    color: var(--eic-global-on-surface-variant);
+    border: 1px solid var(--eic-global-outline);
+    white-space: nowrap;
+    font-size: calc(var(--eic-gmat-body-medium-size) * 0.95);
+    flex-shrink: 0;
+}
+.snippet-toolbar-container .snippet-button:hover {
+    background-color: var(--eic-global-surface);
+    color: var(--eic-global-on-surface);
+    border-color: var(--eic-global-primary);
+}
+.more-snippets-panel-trigger {
+    /* Uses .eic-button .eic-button-icon-only base potentially */
+    /* Overrides: */
+    padding: calc(var(--eic-control-padding-vertical) * 0.75) calc(var(--eic-control-padding-horizontal) * 0.7);
+    flex-shrink: 0;
+    background-color: var(--eic-global-tertiary);
+    color: var(--eic-global-on-tertiary);
+    border-radius: var(--eic-global-shape-radius-small);
+    font-size: calc(var(--eic-gmat-body-medium-size) * 0.95);
+    min-width: 36px; /* Ensure decent size */
+    border: 1px solid var(--eic-global-outline);
+}
+.more-snippets-panel-trigger:hover {
+    opacity: 0.9;
+}
+.eic-snippet-btn-hidden {
+    display: none !important; /* Utility from main.css */
+}
+
+/* --- Prompt Composer Textarea --- */
+#adv-input-modal-textarea {
+    /* Uses .eic-textarea base from main.css */
+    /* Overrides specific to this modal: */
+    flex-grow: 1; /* Take remaining vertical space */
+    width: calc(100% - 32px); /* Account for left/right margins */
+    margin: var(--eic-control-padding-vertical) var(--eic-control-padding-horizontal);
+    padding: 12px;
+    border: 1px solid var(--eic-global-outline-variant);
+    border-radius: var(--eic-global-shape-radius-small);
+    resize: none; /* Disable resize */
+    box-shadow: none; /* Remove base focus shadow */
+    background-color: var(--eic-global-surface-variant-alt); /* Distinct background */
+    transition: margin-right 0.3s ease-out, border-color 0.2s ease; /* For slide panel interaction and focus */
+    min-height: 100px; /* Ensure decent minimum height */
+    font-family: var(--eic-global-font-family);
+    color: var(--eic-global-on-surface);
+    font-size: var(--eic-global-font-size);
+}
+#adv-input-modal-textarea:focus {
+    /* Subtle focus style - only change border color, no other changes */
+    border-color: var(--eic-global-primary);
+    outline: none;
+}
+/* Adjust textarea margin when slide panel is open */
+#adv-input-modal-textarea.eic-slide-panel-is-open {
+    /* Make room for the panel, with additional space for padding */
+    margin-right: calc(30% + var(--eic-control-padding-horizontal) * 2); /* Account for panel width plus padding */
+}
+
+/* --- Bottom Action Buttons --- */
+#adv-input-modal-content .adv-modal-buttons {
+    display: flex;
+    justify-content: flex-end; /* Align buttons right */
+    gap: var(--eic-item-gap);
+    padding: var(--eic-control-padding-vertical) var(--eic-control-padding-horizontal);
+    border-top: 1px solid var(--eic-global-outline-variant);
+    background-color: var(--eic-global-surface); /* Match modal bg */
+    flex-shrink: 0; /* Prevent shrinking */
+    height: var(--snippet-footer-height); /* Set height to match the variable */
+    box-sizing: border-box; /* Include padding and border in height calculation */
+}
+/* Specific button modifiers */
+#adv-input-modal-content .clear-textarea-btn {
+    /* Uses .eic-button .eic-button-tertiary base potentially */
+    margin-right: auto; /* Push clear button left */
+    /* Override if needed */
+}
+#adv-input-modal-content .send-prompt-btn {
+    /* Uses .eic-button .eic-button-primary base */
+    /* Override if needed */
+    font-weight: var(--eic-gmat-title-small-weight); /* Emphasize send */
+}
+
+/* --- Snippet Slide-in Panel --- */
+#eic-snippet-slide-panel {
+    position: absolute;
+    /* Position it below the toolbar and above the footer buttons */
+    top: calc(var(--snippet-toolbar-height, 52px) + var(--eic-control-padding-vertical)); /* Position below toolbar */
+    right: var(--eic-control-padding-horizontal);
+    width: 30%; /* Takes up 30% of modalContent width */
+    max-width: 250px;
+    min-width: 180px;
+    /* Set height to fill space between toolbar and footer buttons */
+    height: calc(100% - var(--snippet-toolbar-height, 52px) - var(--snippet-footer-height, 60px));
+    background-color: var(--eic-global-surface-variant-alt); /* Slightly different bg */
+    border: 1px solid var(--eic-global-outline-variant);
+    border-radius: var(--eic-global-shape-radius-medium);
+    box-shadow: -2px 0 5px var(--eic-global-shadow);
+    z-index: 10; /* Above textarea - internal to component, no need for global z-index */
+    transform: translateX(calc(100% + var(--eic-control-padding-horizontal))); /* Initially off-screen */
+    transition: transform 0.3s ease-out;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+#eic-snippet-slide-panel.visible {
+    transform: translateX(0);
+}
+.slide-panel-header { /* Optional Header */
+    padding: calc(var(--eic-control-padding-vertical) * 1.2) var(--eic-control-padding-horizontal);
+    font-weight: var(--eic-gmat-title-small-weight);
+    color: var(--eic-global-on-surface);
+    border-bottom: 1px solid var(--eic-global-outline-variant);
+    background-color: var(--eic-global-surface-variant);
+    flex-shrink: 0;
+    font-size: var(--eic-gmat-title-small-size);
+    border-top-left-radius: var(--eic-global-shape-radius-medium);
+    border-top-right-radius: var(--eic-global-shape-radius-medium);
+}
+.slide-panel-list {
+    flex-grow: 1;
+    overflow-y: auto; /* Enable scrolling */
+    padding: var(--eic-control-padding-vertical);
+    /* Scrollbar style inherited from main.css */
+}
+.slide-panel-snippet-item {
+    display: block;
+    padding: calc(var(--eic-control-padding-vertical) * 0.8) calc(var(--eic-control-padding-horizontal) * 0.8);
+    cursor: pointer;
+    border-radius: var(--eic-global-shape-radius-small);
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--eic-global-on-surface-variant);
+    font-size: var(--eic-gmat-body-medium-size);
+    transition: background-color 0.2s ease;
+}
+.slide-panel-snippet-item:hover {
+    background-color: var(--eic-global-primary);
+    color: var(--eic-global-on-primary);
+}
+.slide-panel-empty-message {
+    padding: calc(var(--eic-control-padding-vertical) * 2.5);
+    text-align: center;
+    color: var(--eic-global-on-surface-variant);
+    font-style: italic;
+    font-size: var(--eic-gmat-body-medium-size);
+}

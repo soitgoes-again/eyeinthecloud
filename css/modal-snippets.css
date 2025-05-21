@@ -1,0 +1,137 @@
+/* === modal-snippets.css === */
+/* Styles for the Snippet Management UI (List in Popup Tab & Edit/Add Form) */
+
+/* --- Snippet List Area (within Popup Tab) --- */
+.snippet-list-area {
+    /* Container for the list */
+    max-height: 300px; /* Limit height to allow scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+    margin-bottom: 16px; /* Space below the list */
+    border: 1px solid var(--eic-global-outline);
+    border-radius: var(--eic-global-shape-radius-medium);
+    /* Scrollbar styles inherited from main.css */
+}
+
+.snippet-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px; /* Standard padding */
+    border-bottom: 1px solid var(--eic-global-outline-variant);
+    transition: background-color 0.15s ease; /* Subtle hover */
+}
+.snippet-list-item:last-child {
+    border-bottom: none;
+}
+.snippet-list-item:hover {
+    background-color: var(--eic-global-surface-variant); /* Hover feedback */
+}
+
+.snippet-name {
+    flex-grow: 1; /* Take available space */
+    margin-right: 10px;
+    font-size: var(--eic-gmat-body-medium-size); /* Use variable */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--eic-global-on-surface);
+    cursor: default; /* Indicate text is not directly interactive */
+}
+
+.snippet-actions {
+    display: flex;
+    gap: 6px; /* Slightly tighter gap for action buttons */
+    flex-shrink: 0; /* Prevent action buttons container from shrinking */
+}
+
+.snippet-action-btn {
+    /* Uses .eic-button .eic-button-icon-only base potentially */
+    /* Overrides: */
+    background: none;
+    border: none;
+    color: var(--eic-global-on-surface-variant);
+    padding: 4px; /* Smaller padding for compact icon buttons */
+    border-radius: var(--eic-global-shape-radius-small);
+    width: 28px; /* Explicit small size */
+    height: 28px;
+    min-width: 28px;
+    font-size: 18px; /* Icon size */
+}
+.snippet-action-btn:hover {
+    background-color: var(--eic-global-surface-variant);
+    color: var(--eic-global-on-surface);
+}
+.snippet-action-btn:disabled {
+    /* Base disabled styles apply */
+    background-color: transparent !important; /* Ensure no background when disabled */
+    color: var(--eic-global-outline-variant) !important; /* Make very faint */
+}
+
+/* --- "Add Snippet" Button (within Popup Tab) --- */
+.add-snippet-btn {
+    /* Uses .eic-button base */
+    /* Overrides: */
+    width: 100%; /* Full width button */
+    margin-top: 10px; /* Space above button */
+    justify-content: center; /* Center text */
+    /* Base hover/focus/disabled styles apply */
+}
+
+/* --- Snippet Form Modal --- */
+#snippet-form-container {
+    /* Uses .eic-modal-overlay base */
+    /* Overrides if needed, e.g., different z-index */
+    z-index: var(--eic-z-layer-popup-overlay);
+}
+
+.snippet-form {
+    /* Container for the form elements within the overlay */
+    width: 90%;
+    max-width: 500px; /* Reasonable max width */
+    padding: 20px 24px; /* More padding */
+    background-color: var(--eic-global-surface);
+    border-radius: var(--eic-global-shape-radius-medium);
+    border: 1px solid var(--eic-global-outline);
+    box-shadow: 0 4px 15px var(--eic-global-shadow);
+    color: var(--eic-global-on-surface);
+    display: flex;
+    flex-direction: column;
+    gap: 16px; /* Space between form fields */
+}
+
+.snippet-form-field {
+    /* Container for label + input */
+    display: flex;
+    flex-direction: column;
+    gap: 6px; /* Space between label and input */
+}
+
+.snippet-form-field label {
+    display: block;
+    font-size: var(--eic-gmat-body-medium-size);
+    font-weight: var(--eic-gmat-title-small-weight); /* Medium weight label */
+    color: var(--eic-global-on-surface);
+}
+
+.snippet-form-field input[type="text"], /* Selector for name input */
+.snippet-form-field textarea {          /* Selector for content textarea */
+    /* Uses .eic-input / .eic-textarea base from main.css */
+    /* Specific overrides for form context if needed: */
+    background-color: var(--eic-global-surface-variant-alt); /* Ensure correct background */
+}
+.snippet-form-field textarea {
+    min-height: 120px; /* Specific min-height for snippet content */
+}
+
+.snippet-form-buttons {
+    display: flex;
+    justify-content: flex-end; /* Align buttons right */
+    gap: 10px;
+    margin-top: 8px; /* Space above buttons */
+    border-top: 1px solid var(--eic-global-outline-variant); /* Separator line */
+    padding-top: 16px; /* Space above buttons after line */
+}
+
+/* Style form buttons using base classes + modifiers */
+/* Assuming Cancel button has class="eic-button eic-button-tertiary" */
+/* Assuming Save button has class="eic-button eic-button-primary" */

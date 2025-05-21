@@ -1,0 +1,474 @@
+/* === popup.css === */
+/* Styles for the main EIC settings popup (#advanced-control-popup) */
+
+/* --- Main Popup Container & Layout --- */
+#advanced-control-popup {
+    position: fixed; top: max(60px, 8vh); left: 50%; transform: translateX(-50%); z-index: var(--eic-z-layer-popup);
+    width: 340px;
+    max-width: 90vw; max-height: 85vh; overflow-y: auto; /* Base scroll handled by container */
+    border-radius: var(--eic-global-shape-radius-medium);
+    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+                0 3px 14px 2px rgba(0, 0, 0, 0.12),
+                0 5px 5px -3px rgba(0, 0, 0, 0.2);
+    font-family: var(--eic-global-font-family);
+    background-color: var(--eic-global-surface);
+    color: var(--eic-global-on-surface);
+    border: 1px solid var(--eic-global-outline);
+    display: flex; flex-direction: column; /* Essential for flex layout */
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.25s ease-out, transform 0.25s ease-out, visibility 0s linear 0.25s;
+    /* Scrollbar styles are now handled by main.css */
+}
+#advanced-control-popup.visible {
+    opacity: 1; visibility: visible; transform: translateX(-50%) scale(1);
+    transition-delay: 0s;
+}
+
+/* --- Overlay for the Main Popup --- */
+/* This is State.pageOverlay when used with #advanced-control-popup. */
+/* It has the ID 'eic-modal-overlay' and class 'eic-modal-overlay'. */
+/* We need its z-index to be BELOW the popup it's for. */
+/* The general .eic-modal-overlay rule in main.css might set a higher z-index (var(--eic-z-layer-modal-overlay, 9995)). */
+/* This ID-specific rule ensures this particular overlay is behind the main popup. */
+div#eic-modal-overlay.eic-modal-overlay {
+    z-index: var(--eic-z-layer-popup-overlay); /* Should be 9980, below --eic-z-layer-popup (9990) */
+}
+
+/* --- Popup Header --- */
+#advanced-control-popup .popup-header {
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid var(--eic-global-outline-variant);
+    padding: var(--eic-control-padding-vertical) var(--eic-control-padding-horizontal) var(--eic-control-padding-vertical) 16px;
+    min-height: 48px; box-sizing: border-box;
+    flex-shrink: 0; /* Prevent header shrinking */
+}
+#advanced-control-popup .popup-title {
+    font-size: var(--eic-gmat-title-small-size);
+    font-weight: var(--eic-gmat-title-small-weight);
+    margin: 0;
+    color: var(--eic-global-on-surface);
+    line-height: 1.5;
+}
+#advanced-control-popup .popup-editable-title {
+    flex-grow: 1; padding: 0; margin-right: 10px; border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease; line-height: inherit; cursor: text;
+}
+#advanced-control-popup .popup-editable-title:hover,
+#advanced-control-popup .popup-editable-title:focus {
+    border-bottom-color: color-mix(in srgb, var(--eic-global-on-surface) 50%, transparent); outline: none;
+}
+#advanced-control-popup .popup-title-input {
+    /* Assuming .eic-input from main.css covers most base styles */
+    /* Overrides specific to this context */
+    flex-grow: 1; margin-right: 10px; border: none;
+    border-bottom: 1px solid var(--eic-global-primary); background-color: transparent;
+    color: inherit; font-size: inherit; font-weight: inherit; padding: 0;
+    outline: none; border-radius: 0; line-height: inherit;
+    box-shadow: none; /* Override base focus shadow if needed */
+}
+#advanced-control-popup .close-popup-button {
+    /* Uses .eic-button .eic-button-icon-only from main.css */
+    /* Overrides: */
+    background: transparent;
+    border: none;
+    color: var(--eic-global-on-surface-variant);
+    font-size: 18px; /* Icon size control */
+    width: 36px; /* Explicit size */
+    height: 36px;
+    min-width: 36px;
+}
+#advanced-control-popup .close-popup-button:hover {
+    color: var(--eic-global-on-surface);
+    background-color: var(--eic-global-surface-variant); /* Specific hover */
+}
+
+/* --- Popup Top Controls Section (VIBE, The Eye) --- */
+.popup-top-controls {
+    padding: 16px 16px 0; /* Top/side padding, no bottom */
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-shrink: 0;
+}
+/* VIBE Button specific styles (assuming HTML has class="eic-button vibe-button") */
+#advanced-control-popup .vibe-button {
+    /* Uses .eic-button from main.css */
+    /* Overrides: */
+    border-color: var(--eic-global-primary);
+    background-color: transparent;
+    color: var(--eic-global-primary);
+    width: 100%;
+    justify-content: center; /* Overrides default if needed */
+    text-transform: none;
+}
+#advanced-control-popup .vibe-button:hover {
+    background-color: color-mix(in srgb, var(--eic-global-primary) 15%, transparent);
+}
+#advanced-control-popup .vibe-button.active {
+    background-color: var(--eic-global-primary);
+    color: var(--eic-global-on-primary);
+}
+/* "The Eye" Button specific styles (assuming HTML has class="eic-button" id="eic-global-ai-theme-gen-btn") */
+#eic-global-ai-theme-gen-btn {
+    /* Uses .eic-button from main.css */
+    /* Overrides: */
+    width: 100%;
+    justify-content: center; /* Ensure centered */
+    /* Add specific hover/active states if different from base .eic-button */
+}
+/* Style for the icon slot within "The Eye" button */
+#eic-global-ai-theme-gen-btn .eic-button-icon-svg-slot .eic-svg-icon-container {
+    font-size: 20px; /* Control icon size */
+}
+
+/* --- Main Popup Content Area --- */
+#advanced-control-popup .popup-content {
+    flex: 1 1 auto; /* Allow growth/shrink */
+    min-height: 0; /* Important for flex shrink */
+    overflow-x: hidden;
+    overflow-y: hidden; /* Scrolling is now handled by .eic-tab-content-panels */
+    padding: 16px; /* Outer padding for the content area */
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Tab Interface --- */
+.eic-tab-buttons {
+    display: flex;
+    border-bottom: 1px solid var(--eic-global-outline-variant);
+    margin-bottom: 16px; /* Space below tabs */
+    flex-shrink: 0;
+}
+.eic-tab-button {
+    /* Uses .eic-button .eic-button-tertiary potential base */
+    /* Overrides: */
+    background: transparent;
+    border: none; /* Override base border */
+    border-bottom: 2px solid transparent;
+    padding: 8px 16px;
+    margin: 0 4px 0 0;
+    cursor: pointer;
+    color: var(--eic-global-on-surface-variant);
+    border-radius: var(--eic-global-shape-radius-small) var(--eic-global-shape-radius-small) 0 0; /* Specific rounding */
+    font-weight: var(--eic-gmat-body-medium-weight);
+    font-size: var(--eic-gmat-body-medium-size);
+    min-height: auto; /* Override base button min-height */
+}
+.eic-tab-button:hover {
+    background-color: var(--eic-global-surface-variant);
+    color: var(--eic-global-on-surface);
+    border-bottom-color: transparent; /* Keep border transparent on hover */
+}
+.eic-tab-button.active {
+    color: var(--eic-global-primary);
+    border-bottom-color: var(--eic-global-primary); /* Active indicator */
+    background-color: color-mix(in srgb, var(--eic-global-primary) 10%, transparent); /* Slight tint */
+}
+.eic-tab-content-panels {
+    flex: 1 1 auto; /* Allow growth/shrink */
+    display: flex; /* Needed for flex child */
+    flex-direction: column;
+    min-height: 0; /* Essential for allowing scroll */
+    overflow-y: auto; /* This panel scrolls */
+    padding-right: 5px; /* Space for scrollbar */
+    margin-right: -5px; /* Offset padding */
+    /* Scrollbar styles handled by main.css */
+}
+.eic-tab-panel {
+    /* Panels are simple containers, display controlled by JS */
+    /* Padding can be added here if all panels need internal padding */
+    padding: 4px; /* Example padding */
+    box-sizing: border-box;
+}
+.eic-tab-panel:not(.active-panel) {
+    display: none;
+}
+.eic-tab-panel.active-panel {
+    display: block;
+}
+
+/* --- Generic Sections within Popup Content --- */
+#advanced-control-popup .popup-section {
+    border: none; padding: 0; margin: 0 0 var(--eic-section-padding-bottom) 0; /* Space below sections */
+    display: flex; flex-direction: column; gap: var(--eic-item-gap);
+}
+#advanced-control-popup .popup-section:last-child {
+    margin-bottom: 0; /* No space after the last section in a panel */
+}
+#advanced-control-popup legend { /* Styling for fieldset legends if used */
+    font-size: 11px; font-weight: 500; text-transform: uppercase;
+    letter-spacing: 0.5px; padding: 0 0 8px 0;
+    color: var(--eic-global-on-surface-variant);
+    border: none; border-bottom: 1px solid var(--eic-global-outline-variant);
+    margin: 0 0 var(--eic-item-gap) 0; width: 100%;
+    box-sizing: border-box; display: block;
+}
+
+/* --- Theme Tab Specifics --- */
+.theme-buttons-container {
+    display: flex;
+    gap: 24px;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 12px 0;
+}
+.theme-select-button {
+    /* Uses .eic-button .eic-button-icon-only base */
+    /* Overrides: */
+    border: 1px solid var(--eic-global-outline-variant);
+    background-color: transparent;
+    color: var(--eic-global-on-surface-variant);
+    width: 40px; height: 40px; /* Specific size */
+    min-width: 40px;
+    font-size: 20px; /* Icon size */
+}
+.theme-select-button:hover {
+    background-color: var(--eic-global-surface-variant);
+    border-color: var(--eic-global-outline);
+    color: var(--eic-global-on-surface);
+}
+.theme-select-button.active {
+    background-color: var(--eic-global-primary);
+    color: var(--eic-global-on-primary);
+    border-color: var(--eic-global-primary);
+    transform: scale(1.05);
+}
+/* Personal Theme Controls Container */
+.personal-theme-container {
+  margin-top: 16px;
+  background-color: var(--eic-global-surface-variant-alt);
+  border-radius: var(--eic-global-shape-radius-medium);
+  border: 1px solid var(--eic-global-outline-variant);
+  overflow: hidden;
+  /* Display controlled by JS/UpdateUI */
+}
+.personal-theme-header {
+  padding: 10px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--eic-global-on-surface);
+  background-color: var(--eic-global-surface-variant);
+  border-bottom: 1px solid var(--eic-global-outline-variant);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.personal-theme-controls {
+  display: flex; /* Use flex for simpler alignment */
+  justify-content: flex-end; /* Align buttons to the right */
+  gap: 8px;
+  padding: 12px;
+}
+.theme-control-button {
+    /* Uses .eic-button base */
+    /* Overrides: */
+    padding: 6px 10px; /* Tighter padding */
+    height: 36px;
+    font-size: 11px;
+    width: auto; /* Size to content */
+    min-width: 80px; /* Ensure minimum touch target */
+    /* Remove justify-self, not needed for flex */
+}
+/* Hover/disabled states handled by base .eic-button */
+
+/* --- History Tab Specifics --- */
+.slider-container {
+    display: flex; flex-direction: column; gap: 6px; width: 100%;
+}
+.slider-container label {
+    display: flex; justify-content: space-between;
+    font-size: var(--eic-gmat-body-medium-size);
+    color: var(--eic-global-on-surface);
+    margin-bottom: 4px;
+}
+.slider-container #num-turns-value {
+    font-weight: 500; color: var(--eic-global-primary);
+}
+#advanced-control-popup .slider-container input[type="range"] {
+    /* Uses .eic-input base potentially, but sliders are unique */
+    -webkit-appearance: none; appearance: none; width: 100%; height: 18px; background: transparent; cursor: pointer;
+    margin: 4px 0; padding: 0; outline: none; --_slider-fill-percent: 50%;
+}
+#advanced-control-popup .slider-container input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%; height: 4px; cursor: pointer; border-radius: 2px; border: none;
+    background: linear-gradient(to right, var(--eic-global-primary) 0%, var(--eic-global-primary) var(--_slider-fill-percent), var(--eic-global-outline-variant) var(--_slider-fill-percent), var(--eic-global-outline-variant) 100%);
+}
+#advanced-control-popup .slider-container input[type="range"]::-moz-range-track {
+    width: 100%; height: 4px; cursor: pointer; border-radius: 2px; border: none;
+    background: linear-gradient(to right, var(--eic-global-primary) 0%, var(--eic-global-primary) var(--_slider-fill-percent), var(--eic-global-outline-variant) var(--_slider-fill-percent), var(--eic-global-outline-variant) 100%);
+}
+#advanced-control-popup .slider-container input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none; border: none; height: 16px; width: 16px; border-radius: 50%;
+    background: var(--eic-global-primary); cursor: pointer; margin-top: -6px; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+#advanced-control-popup .slider-container input[type="range"]::-moz-range-thumb {
+    border: none; height: 16px; width: 16px; border-radius: 50%; background: var(--eic-global-primary);
+    cursor: pointer; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+#advanced-control-popup .slider-container input[type="range"]:disabled {
+    /* Base :disabled state handles opacity, cursor */
+    /* Specific track/thumb colors for disabled state */
+}
+#advanced-control-popup .slider-container input[type="range"]:disabled::-webkit-slider-runnable-track { background: linear-gradient(to right, var(--eic-global-outline) 0%, var(--eic-global-outline) var(--_slider-fill-percent), var(--eic-global-outline-variant) var(--_slider-fill-percent), var(--eic-global-outline-variant) 100%); }
+#advanced-control-popup .slider-container input[type="range"]:disabled::-moz-range-track { background: linear-gradient(to right, var(--eic-global-outline) 0%, var(--eic-global-outline) var(--_slider-fill-percent), var(--eic-global-outline-variant) var(--_slider-fill-percent), var(--eic-global-outline-variant) 100%); }
+#advanced-control-popup .slider-container input[type="range"]:disabled::-webkit-slider-thumb { background: var(--eic-global-outline); }
+#advanced-control-popup .slider-container input[type="range"]:disabled::-moz-range-thumb { background: var(--eic-global-outline); }
+
+/* --- Popup Tooltip Area --- */
+.eic-tooltip-area {
+    flex-shrink: 0; /* Prevent shrinking */
+    padding: 8px var(--eic-control-padding-horizontal, 12px); /* Adjusted padding */
+    border-top: 1px solid var(--eic-global-outline-variant);
+    background-color: var(--eic-global-surface); /* Match popup background */
+    color: var(--eic-global-on-surface-variant);
+    font-size: 12px;
+    text-align: center;
+    font-style: italic;
+    min-height: 3.6em; /* Adjusted height */
+    height: 3.6em;
+    line-height: 1.4em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Allow 2 lines */
+    -webkit-box-orient: vertical;
+    transition: color 0.3s ease;
+    box-sizing: border-box;
+}
+
+/* === modal-popup.css (continued) === */
+
+/* --- Styles for Personal Theme Editor Modal (Embedded within Popup's display logic) --- */
+/* This modal is created separately but shown/hidden in conjunction with the main popup or by its own toggle */
+
+.eic-personal-theme-editor { /* The modal itself */
+  position: fixed; /* Fixed position to overlay the page */
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 90%; max-width: 600px; /* Responsive width */
+  max-height: 85vh; /* Limit height */
+  background-color: var(--eic-global-surface);
+  color: var(--eic-global-on-surface);
+  border-radius: var(--eic-global-shape-radius-large); /* Larger radius for distinct modal */
+  box-shadow: 0 6px 24px var(--eic-global-shadow); /* More prominent shadow */
+  z-index: var(--eic-z-layer-modal); /* Above main popup but below its overlay, or manage with JS */
+  display: none; /* Initially hidden, display: flex by JS */
+  flex-direction: column;
+  overflow: hidden; /* Container manages overflow */
+  border: 1px solid var(--eic-global-outline-variant);
+}
+/* .eic-personal-theme-editor.disabled-by-vibe is in main.css */
+
+.eic-personal-theme-editor .editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px; /* Slightly less padding */
+  background-color: var(--eic-global-tertiary);
+  color: var(--eic-global-on-tertiary);
+  border-bottom: 1px solid var(--eic-global-outline-variant); /* Separator */
+  flex-shrink: 0;
+}
+.eic-personal-theme-editor .editor-header h3 {
+  margin: 0;
+  font-weight: var(--eic-gmat-title-small-weight);
+  font-size: var(--eic-gmat-title-small-size);
+}
+.eic_personal_theme_editor .editor-close-btn {
+  /* Uses .eic-button .eic-button-icon-only .eic-button-tertiary base potentially */
+  /* Overrides: */
+  background: transparent;
+  border: none;
+  color: var(--eic-global-on-tertiary); /* Match header text */
+  font-size: 18px; /* Icon size */
+  width: 32px; height: 32px; min-width: 32px; /* Slightly smaller */
+  padding: 0;
+}
+.eic-personal-theme-editor .editor-close-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1); /* Subtle hover on header */
+  color: var(--eic-global-on-tertiary);
+}
+
+.eic-personal-theme-editor .editor-content {
+  flex: 1; /* Take available space */
+  padding: 16px 20px; /* More horizontal padding */
+  overflow-y: auto; /* Enable scrolling for content */
+  /* max-height calculation from original modules.css might be too specific, rely on parent max-height */
+  /* Scrollbar styling from main.css */
+}
+
+.eic-personal-theme-editor .personal-theme-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--eic-global-outline-variant);
+}
+.eic-personal-theme-editor .personal-theme-row:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.eic-personal-theme-editor .personal-theme-row label {
+    min-width: 180px; /* Ensure labels align */
+    max-width: 200px; /* Prevent very long labels from breaking layout too much */
+    font-size: var(--eic-gmat-body-medium-size);
+    color: var(--eic-global-on-surface-variant);
+    margin-right: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 0; /* Prevent label from shrinking */
+}
+
+.eic-personal-theme-editor .color-input-container {
+    display: flex;
+    align-items: center;
+    flex-grow: 1; /* Allow input area to take space */
+    justify-content: flex-end; /* Align input to the right */
+}
+
+.eic-personal-theme-editor .color-preview {
+    width: 24px;
+    height: 24px;
+    border-radius: var(--eic-global-shape-radius-small);
+    margin-right: 8px;
+    border: 1px solid var(--eic-global-outline);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.eic-personal-theme-editor .personal-theme-input {
+    /* Uses .eic-input base from main.css */
+    /* Overrides: */
+    min-width: 160px; /* Ensure decent width */
+    flex-grow: 1; /* Allow to grow if space allows */
+    max-width: 220px; /* But not too wide */
+}
+/* Specific style for color input type, if needed to hide text part */
+.eic-personal-theme-editor .personal-theme-input[type="color"] {
+    padding: 2px; /* Minimal padding for color picker */
+    height: 28px; /* Match preview roughly */
+    min-width: 40px; /* Just enough for the picker */
+    flex-grow: 0;
+}
+
+.eic-personal-theme-editor .editor-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px; /* Increased gap */
+    padding: 12px 16px; /* Standard padding */
+    border-top: 1px solid var(--eic-global-outline-variant);
+    background-color: var(--eic-global-surface); /* Match modal bg */
+    flex-shrink: 0;
+}
+/* Buttons in footer use .eic-button base + modifiers */
+/* Example: #cancel-personal-theme-btn could be .eic-button .eic-button-secondary */
+/* Example: #save-personal-palette-btn could be .eic-button .eic-button-primary */
+
+/* --- Hide Tab Specifics --- */
+/* Uses base .toggle-setting from main.css */
+
+/* --- Snippets Tab Specifics --- */
+/* Snippet styles will go into snippets.css */

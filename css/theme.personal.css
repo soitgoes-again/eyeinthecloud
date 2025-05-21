@@ -1,0 +1,33 @@
+/* css/theme.personal.css */
+body.theme-personal-applied {
+    /* TODO: Replace these with actual default personal theme colors */
+    --eic-global-primary: #ff8a65 !important;
+    --eic-global-on-primary: #4e342e !important;
+    --eic-global-secondary: #ec407a !important;
+    --eic-global-on-secondary: #ffffff !important;
+    --eic-global-tertiary: #aeea00 !important;
+    --eic-global-on-tertiary: #1b5e20 !important;
+    --eic-global-error: #f44336 !important;
+    --eic-global-on-error: #ffffff !important;
+    --eic-global-background: #f8f9fa !important;
+    --eic-global-on-background: #37474f !important; /* Updated based on --eic-global-on-surface */
+    --eic-global-surface: #ffffff !important;
+    --eic-global-on-surface: #37474f !important;
+    --eic-global-surface-variant: #fce4ec !important;
+    --eic-global-on-surface-variant: #d81b60 !important;
+    --eic-global-surface-variant-alt: #fff8e1 !important;
+    --eic-global-outline: #cfd8dc !important;
+    --eic-global-outline-variant: #f8bbd0 !important;
+    --eic-global-shadow: rgba(236, 64, 122, 0.15) !important;
+    --eic-global-scrim: rgba(248, 249, 250, 0.3) !important;
+    --eic-global-surface-tint-layer: rgba(236, 64, 122, 0.05) !important; /* Updated based on --eic-global-shadow */
+    --eic-global-inverse-surface: #303030 !important; /* Not directly provided, keeping original */
+    --eic-global-inverse-on-surface: #f5f5f5 !important; /* Not directly provided, keeping original */
+    --eic-global-inverse-primary: #add6ff !important; /* Not directly provided, keeping original */
+    --eic-global-modal-overlay-bg: rgba(248, 249, 250, 0.6) !important;
+    --eic-global-font-family: 'Poppins', 'Helvetica Neue', sans-serif !important;
+    --eic-global-font-size: 1rem !important;
+    --eic-global-shape-radius-small: 16px !important;
+    --eic-global-shape-radius-medium: 24px !important;
+    --eic-global-shape-radius-large: 32px !important;
+}

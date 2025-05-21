@@ -1,0 +1,388 @@
+/* === main.css ===
+File Purpose:
+This file is the **foundational stylesheet** for all "Eye in the Cloud" (EIC) UI components.
+It defines:
+1.  Global EIC Design Tokens: CSS custom properties (`--eic-global-*`) for colors, fonts, spacing, radii.
+    These are the **default** values used when no specific EIC theme (like DOS or Nature) is active.
+2.  Core Structural Styles: Base styling for scrollbars, SVG icon containers.
+3.  Utility Classes: Helpers like `.disabled-by-vibe`, `.eic-hidden-by-default`, `.eic-visible`.
+4.  Base Component Styles: Default appearance for reusable EIC components.
+    -   `.eic-modal-overlay`: Base for full-screen dimming overlays.
+    -   `.toggle-setting`, `.basic-slide-toggle`: Base for toggle switches.
+    -   `.eic-button` (and modifiers like `.eic-button-primary`, `.eic-button-icon-only`): Base for all buttons.
+    -   `.eic-input`, `.eic-textarea`: Base for text input fields.
+    -   `#advanced-control-toggle-button`: Main floating EIC button. (Considered core/base for now)
+    -   `.eic-notification`: EIC notification popups. (Considered core/base for now)
+
+IMPORTANT FOR FUTURE DEVELOPMENT/LLMs:
+-   DO NOT redefine the base styles for the components listed above in other CSS files.
+-   Component-specific CSS files (e.g., modal-popup.css, modal-eye.css) should *extend* or *override* these base styles by targeting more specific selectors or adding modifier classes.
+-   All EIC component styling should primarily use the `--eic-global-*` variables for theming.
+-   This file does NOT interact directly with Google AI Studio's own CSS variables or classes.
+*/
+:root {
+    /* --- EIC GLOBAL DEFAULT PALETTE (Neutral Grey) --- */
+    --eic-global-primary: #90a4ae;                 /* Muted Blue-Grey Accent */
+    --eic-global-on-primary: #ffffff;              /* White */
+    
+    --eic-global-secondary: #b0bec5;               /* Lighter Blue-Grey */
+    --eic-global-on-secondary: #263238;            /* Dark Slate */
+    --eic-global-tertiary: #cfd8dc;                /* Very Light Blue-Grey */
+    --eic-global-on-tertiary: #37474f;             /* Medium Slate */
+    --eic-global-background: #37474f;              /* Medium Slate Background (Used for some component BGs) */
+    --eic-global-surface: #455a64;                 /* Slightly Lighter Slate Surface (Main component BG) */
+    --eic-global-surface-variant: #546e7a;         /* Medium Slate Variant (Hover, secondary elements) */
+    --eic-global-surface-variant-alt: #3c4a54;     /* Darker variant for modals etc */
+    --eic-global-on-surface: #eceff1;              /* Off-White Text */
+    --eic-global-on-surface-variant: #b0bec5;      /* Light Blue-Grey Text (Secondary text) */
+    --eic-global-outline: #78909c;                 /* Medium Blue-Grey Outline/Border */
+    --eic-global-outline-variant: #607d8b;         /* Slightly Darker Outline Variant/Dividers */
+    --eic-global-error: #ef9a9a;                   /* Muted Error Red */
+    --eic-global-on-error: #ffffff;                /* White */
+    --eic-global-font-family: 'Google Sans', Roboto, Arial, sans-serif;
+    --eic-global-font-size: 0.98rem;
+    --eic-global-shape-radius-small: 4px;          /* Standard rounding */
+    --eic-global-shape-radius-medium: 8px;
+    --eic-global-shape-radius-large: 12px;
+    --eic-global-shadow: rgba(0, 0, 0, 0.2);       /* Standard shadow */
+    --eic-global-scrim: rgba(55, 71, 79, 0.4);     /* Neutral scrim */
+    --eic-global-modal-overlay-bg: rgba(55, 71, 79, 0.6); /* Neutral overlay */
+
+    /* --- EIC Component Sizing/Spacing Defaults --- */
+    --eic-gmat-body-medium-size: 13px;
+    --eic-gmat-body-medium-weight: 400;
+    --eic-gmat-title-small-size: 14px;
+    --eic-gmat-title-small-weight: 500;
+    --eic-control-padding-vertical: 8px;
+    --eic-control-padding-horizontal: 12px;
+    --eic-item-gap: 16px;
+    --eic-section-padding-bottom: 16px;
+    /* --- EIC Z-Index Stacking Layers --- */
+    --eic-z-layer-base: 9000;
+    --eic-z-layer-popup-overlay: 9980;
+    --eic-z-layer-popup: 9990;
+    --eic-z-layer-modal-overlay: 9979;
+    --eic-z-layer-modal: 10000;
+    --eic-z-layer-modal-priority-overlay: 10005;
+    --eic-z-layer-modal-priority: 10010;
+    --eic-z-layer-topmost: 10050;
+    --eic-z-floating-button: 9500;
+}
+
+/* === Scrollbar Styling === */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--eic-global-surface-variant, #f1f1f1);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--eic-global-outline, #888);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--eic-global-primary, #555);
+}
+
+/* === Base SVG Icon Handling === */
+.eic-svg-icon-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  position: relative;
+  width: auto; /* Let parent control size or use font-size */
+  height: auto;
+  line-height: 0; /* Prevent extra space */
+}
+.eic-svg-icon-container svg, /* Direct SVG child */
+.eic-injected-svg-node {     /* Programmatically injected SVG */
+  width: 1em; /* Default size relative to font-size */
+  height: 1em;
+  fill: currentColor;
+  display: block;
+  overflow: visible;
+}
+
+/* === Utilities === */
+.disabled-by-vibe {
+    opacity: 0.5 !important;
+    pointer-events: none !important;
+    user-select: none !important;
+}
+.eic-hidden-by-default { /* For elements initially hidden until JS shows them */
+    display: none !important;
+}
+.eic-visible { /* Generic class to make JS-controlled elements visible */
+    display: block !important; /* Default visibility, override as needed */
+}
+.eic-flex-visible { /* Example override */
+    display: flex !important;
+}
+.eic-inline-flex-visible { /* Example override */
+    display: inline-flex !important;
+}
+
+/* === Base Component Styles === */
+
+/* --- Base Modal Overlay (used by multiple modals) --- */
+.eic-modal-overlay { /* Generic overlay class */
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background-color: var(--eic-global-modal-overlay-bg);
+  display: none; /* Hidden by default, takes no space */
+  align-items: center;
+  justify-content: center;
+  z-index: var(--eic-z-layer-modal-overlay); /* Use z-index variable */
+  opacity: 0;    /* Start transparent for fade-in */
+  transition: opacity 0.3s ease; /* Transition opacity only */
+}
+.eic-modal-overlay.visible { /* Generic visibility class */
+    display: flex; /* Set display when visible (flex for centering content) */
+    opacity: 1;
+}
+
+/* --- Base Toggle Switch --- */
+.toggle-setting {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 40px;
+    padding: 4px 0;
+}
+.toggle-label {
+    font-size: var(--eic-gmat-body-medium-size);
+    font-weight: var(--eic-gmat-body-medium-weight);
+    color: var(--eic-global-on-surface);
+    padding-right: 16px;
+    cursor: pointer;
+    user-select: none;
+    flex-grow: 1;
+}
+.basic-slide-toggle {
+    appearance: none; -webkit-appearance: none; position: relative; width: 36px; height: 14px;
+    border-radius: 7px; background-color: var(--eic-global-outline) !important; border: none;
+    cursor: pointer; transition: background-color 0.2s ease-in-out; flex-shrink: 0;
+    margin: 0; outline: none; vertical-align: middle;
+}
+.basic-slide-toggle::before {
+    content: ''; /* Empty content, visual handled by background/border */
+    position: absolute; width: 20px; height: 20px; border-radius: 50%;
+    background-color: var(--eic-global-on-surface-variant);
+    /* Removed text color/content */
+    left: -2px; top: 50%; transform: translateY(-50%);
+    transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 1px 1px rgba(0,0,0,0.14);
+    /* Removed text display properties */
+}
+.basic-slide-toggle:checked { background-color: var(--eic-global-primary) !important; }
+.basic-slide-toggle:checked::before {
+    /* Still use background, but no checkmark content */
+    background-color: var(--eic-global-on-primary); /* Changed to on-primary for contrast */
+    transform: translate(18px, -50%);
+}
+.basic-slide-toggle:focus-visible { box-shadow: 0 0 0 2px color-mix(in srgb, var(--eic-global-primary) 30%, transparent); }
+.basic-slide-toggle:disabled { opacity: 0.5; cursor: not-allowed; }
+.basic-slide-toggle:disabled::before { background-color: var(--eic-global-outline-variant); box-shadow: none; }
+.basic-slide-toggle:disabled:checked { background-color: color-mix(in srgb, var(--eic-global-primary) 40%, var(--eic-global-surface)); }
+.basic-slide-toggle:disabled:checked::before { background-color: var(--eic-global-surface); }
+
+/* --- Base Button Styles --- */
+.eic-button {
+  display: inline-flex; /* Use inline-flex for alignment with text/icons */
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box; /* Include padding/border in size */
+  padding: var(--eic-control-padding-vertical) var(--eic-control-padding-horizontal); /* Use variables */
+  margin: 0; /* Default no margin */
+  border: 1px solid var(--eic-global-outline); /* Default border */
+  border-radius: var(--eic-global-shape-radius-small); /* Use variable */
+  background-color: var(--eic-global-surface-variant); /* Default background */
+  color: var(--eic-global-on-surface-variant); /* Default text color */
+  font-family: var(--eic-global-font-family);
+  font-size: var(--eic-gmat-body-medium-size); /* Use variable */
+  font-weight: var(--eic-gmat-title-small-weight); /* Medium weight */
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s, opacity 0.2s, transform 0.1s;
+  gap: 6px; /* Default gap for icon + text */
+  min-height: 36px; /* Consistent minimum height */
+}
+/* Base Hover */
+.eic-button:not(:disabled):hover {
+  background-color: var(--eic-global-outline); /* Generic darker hover */
+  color: var(--eic-global-on-surface);
+  border-color: var(--eic-global-outline-variant);
+}
+/* Base Focus */
+.eic-button:focus-visible {
+    outline: 2px solid var(--eic-global-primary);
+    outline-offset: 1px;
+}
+/* Base Disabled */
+.eic-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--eic-global-outline-variant);
+  border-color: var(--eic-global-outline-variant);
+  color: var(--eic-global-outline);
+  box-shadow: none;
+}
+
+/* --- Button Modifiers --- */
+.eic-button-primary {
+  background-color: var(--eic-global-primary);
+  color: var(--eic-global-on-primary);
+  border-color: var(--eic-global-primary);
+}
+.eic-button-primary:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--eic-global-primary) 85%, var(--eic-global-background)); /* Darker primary */
+  border-color: color-mix(in srgb, var(--eic-global-primary) 85%, var(--eic-global-background));
+  color: var(--eic-global-on-primary);
+}
+
+.eic-button-secondary { /* Example: less prominent action */
+  background-color: transparent;
+  color: var(--eic-global-primary); /* Use primary color text */
+  border-color: var(--eic-global-primary);
+}
+.eic-button-secondary:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--eic-global-primary) 10%, transparent); /* Subtle primary background */
+  color: var(--eic-global-primary);
+  border-color: var(--eic-global-primary);
+}
+
+.eic-button-tertiary { /* Example: subtle action, like cancel */
+   background-color: transparent;
+   border-color: transparent;
+   color: var(--eic-global-on-surface-variant);
+}
+.eic-button-tertiary:not(:disabled):hover {
+    background-color: var(--eic-global-surface-variant);
+    color: var(--eic-global-on-surface);
+    border-color: transparent;
+}
+
+.eic-button-icon-only {
+    padding: calc(var(--eic-control-padding-vertical) / 1.5); /* Reduced padding */
+    width: 36px; /* Fixed size for consistency */
+    height: 36px;
+    min-width: 36px;
+    border-radius: 50%; /* Circular */
+    gap: 0;
+}
+.eic-button-icon-only .eic-svg-icon-container {
+    font-size: 1.25em; /* Make icon slightly larger */
+}
+
+
+/* --- Base Input/Textarea Styles --- */
+.eic-input,
+.eic-textarea {
+  width: 100%; /* Default to full width */
+  padding: 8px 12px;
+  box-sizing: border-box;
+  background-color: var(--eic-global-surface-variant-alt);
+  color: var(--eic-global-on-surface);
+  border: 1px solid var(--eic-global-outline);
+  border-radius: var(--eic-global-shape-radius-small);
+  font-family: var(--eic-global-font-family);
+  font-size: var(--eic-global-font-size);
+  line-height: 1.5;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.eic-input:focus,
+.eic-textarea:focus {
+  border-color: var(--eic-global-primary);
+  outline: none;
+  box-shadow: 0 0 0 1px var(--eic-global-primary); /* Subtle focus ring */
+}
+.eic-textarea {
+  resize: vertical; /* Allow vertical resize */
+  min-height: 80px; /* Sensible default min-height */
+}
+/* Disabled state */
+.eic-input:disabled,
+.eic-textarea:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: var(--eic-global-surface-variant);
+    border-color: var(--eic-global-outline-variant);
+}
+
+/* === main.css (continued) === */
+
+/* --- Styles for Main Floating EIC Button (Potentially move to button.css later) --- */
+#advanced-control-toggle-button {
+    position: fixed !important; /* Ensure it stays fixed */
+    /* top, left, transform are set by JS in eic_button_manager.js for dynamic positioning */
+    z-index: 10001; /* Consistent with JS and below hitbox */
+    width: 36px; /* From JS inline style */
+    height: 36px; /* From JS inline style */
+    padding: 0; /* From JS inline style */
+    border: none; /* From JS inline style */
+    background: transparent; /* From JS inline style */
+    border-radius: 50%; /* Perfectly round, from JS inline style */
+    box-shadow: 0 2px 8px var(--eic-global-shadow); /* Keep existing shadow */
+    opacity: 0.8; /* Slightly transparent by default */
+    transition: opacity 0.2s, background-color 0.2s, color 0.2s, transform 0.2s; /* Added transform */
+    display: flex; /* For centering icon */
+    align-items: center;
+    justify-content: center;
+    min-width: 36px; /* Ensure min size matches width/height */
+    min-height: 36px; /* Ensure min size matches width/height */
+    overflow: hidden; /* Clip if icon is too large */
+    pointer-events: none; /* Interactions handled by hitbox */
+    cursor: default; /* Interactions handled by hitbox */
+}
+#advanced-control-toggle-button:hover {
+    /* Hover effects are now controlled by the hitbox logic in JS, 
+       but we can keep a visual cue if desired, though it might not be triggered
+       if pointer-events: none is fully effective.
+       For now, let's assume JS handles visual state changes on hover via hitbox.
+    */
+    opacity: 1; /* Example: still allow opacity change if needed */
+}
+
+/* Icon sizing within the main button */
+#advanced-control-toggle-button .eic-svg-icon-container {
+    font-size: 24px; /* Control the SVG size via font-size on its container */
+    width: 100%;   /* Make icon container fill the button */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#advanced-control-toggle-button .eic-svg-icon-container svg {
+    width: 60%; /* Example: Make SVG take 60% of the button space */
+    height: 60%;
+    /* fill is currentColor from main.css */
+}
+
+/* --- Styles for EIC Notifications (Potentially move to notification.css later) --- */
+.eic-notification {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background-color: var(--eic-global-tertiary);
+  color: var(--eic-global-on-tertiary);
+  padding: 12px 24px;
+  border-radius: var(--eic-global-shape-radius-medium);
+  box-shadow: 0 4px 12px var(--eic-global-shadow);
+  z-index: var(--eic-z-layer-topmost); /* Very high z-index, above most things */
+  transform: translateY(150px); /* Start off-screen below */
+  opacity: 0;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  font-family: var(--eic-global-font-family);
+  font-size: var(--eic-gmat-body-medium-size);
+  max-width: 350px; /* Prevent very long notifications */
+  text-align: left;
+}
+.eic-notification.show {
+  transform: translateY(0);
+  opacity: 1;
+}

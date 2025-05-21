@@ -1,0 +1,59 @@
+/* === Confirmation Dialog for Eye Modal === */
+#eic-eye-confirm-dialog {
+    position: absolute;
+    z-index: 10;
+    background-color: var(--eic-global-surface);
+    color: var(--eic-global-on-surface);
+    border-radius: var(--eic-global-shape-radius-small);
+    border: 1px solid var(--eic-global-outline-variant);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    padding: 20px;
+    text-align: center;
+    width: 80%;
+    max-width: 400px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s linear 0.3s;
+    pointer-events: auto; /* Ensure it catches clicks */
+}
+
+#eic-eye-confirm-dialog.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition-delay: 0s;
+}
+
+#eic-eye-confirm-dialog .eic-dialog-message {
+    margin-bottom: 20px;
+}
+
+#eic-eye-confirm-dialog .eic-dialog-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#eic-eye-confirm-dialog button {
+    padding: 8px 16px;
+    border-radius: var(--eic-global-shape-radius-small);
+    border: none;
+    cursor: pointer;
+    font-size: var(--eic-global-font-size);
+    transition: background-color 0.2s;
+}
+
+#eic-eye-confirm-dialog button.eic-cancel-btn {
+    background-color: var(--eic-global-surface-variant);
+    color: var(--eic-global-on-surface-variant);
+}
+
+#eic-eye-confirm-dialog button.eic-confirm-btn {
+    background-color: var(--eic-global-error);
+    color: var(--eic-global-on-error);
+}
+
+#eic-eye-confirm-dialog button:hover {
+    opacity: 0.9;
+}

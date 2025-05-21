@@ -1,0 +1,294 @@
+/* eyeinthecloud.google-overrides.css */
+
+body.eic-theme-active {
+    /* Global Fallbacks WHEN THEMED */
+    background-color: var(--eic-global-background) !important;
+    color: var(--eic-global-on-surface) !important;
+    font-family: var(--eic-global-font-family) !important;
+    font-size: var(--eic-global-font-size) !important;
+
+    /* MDC Component Theming */
+    --mdc-typography-font-family: var(--eic-global-font-family) !important;
+    --mdc-shape-small-component-radius: var(--eic-global-shape-radius-small) !important;
+    --mdc-shape-medium-component-radius: var(--eic-global-shape-radius-medium) !important;
+    --mdc-shape-large-component-radius: var(--eic-global-shape-radius-large) !important;
+
+    /* --- Map EIC Global Palette to Google AI Studio variables --- */
+    /* --- Primary Color Scale --- */
+    --color-primary-0: var(--eic-global-background) !important;
+    --color-primary-5: color-mix(in srgb, var(--eic-global-primary) 5%, var(--eic-global-background)) !important;
+    --color-primary-10: color-mix(in srgb, var(--eic-global-primary) 10%, var(--eic-global-background)) !important;
+    --color-primary-20: color-mix(in srgb, var(--eic-global-primary) 20%, var(--eic-global-background)) !important;
+    --color-primary-25: color-mix(in srgb, var(--eic-global-primary) 25%, var(--eic-global-background)) !important;
+    --color-primary-30: color-mix(in srgb, var(--eic-global-primary) 30%, var(--eic-global-background)) !important;
+    --color-primary-35: color-mix(in srgb, var(--eic-global-primary) 35%, var(--eic-global-background)) !important;
+    --color-primary-40: var(--eic-global-primary) !important; /* Main primary */
+    --color-primary-50: var(--eic-global-primary) !important; /* Main primary */
+    --color-primary-60: color-mix(in srgb, var(--eic-global-primary) 60%, var(--eic-global-on-primary)) !important; /* Mix with on-primary for lighter shades */
+    --color-primary-70: color-mix(in srgb, var(--eic-global-primary) 70%, var(--eic-global-on-primary)) !important;
+    --color-primary-80: color-mix(in srgb, var(--eic-global-primary) 80%, var(--eic-global-on-primary)) !important;
+    --color-primary-90: color-mix(in srgb, var(--eic-global-primary) 90%, var(--eic-global-on-primary)) !important;
+    --color-primary-95: color-mix(in srgb, var(--eic-global-primary) 95%, var(--eic-global-on-primary)) !important;
+    --color-primary-98: color-mix(in srgb, var(--eic-global-primary) 98%, var(--eic-global-on-primary)) !important;
+    --color-primary-99: color-mix(in srgb, var(--eic-global-primary) 99%, var(--eic-global-on-primary)) !important;
+    --color-primary-100: var(--eic-global-on-primary) !important;
+
+    /* --- Secondary Color Scale --- */
+    --color-secondary-0: var(--eic-global-background) !important;
+    --color-secondary-10: color-mix(in srgb, var(--eic-global-secondary) 10%, var(--eic-global-background)) !important;
+    --color-secondary-20: color-mix(in srgb, var(--eic-global-secondary) 20%, var(--eic-global-background)) !important;
+    --color-secondary-25: color-mix(in srgb, var(--eic-global-secondary) 25%, var(--eic-global-background)) !important;
+    --color-secondary-30: color-mix(in srgb, var(--eic-global-secondary) 30%, var(--eic-global-background)) !important;
+    --color-secondary-35: color-mix(in srgb, var(--eic-global-secondary) 35%, var(--eic-global-background)) !important;
+    --color-secondary-40: var(--eic-global-secondary) !important; /* Main secondary */
+    --color-secondary-50: var(--eic-global-secondary) !important; /* Main secondary */
+    --color-secondary-60: color-mix(in srgb, var(--eic-global-secondary) 60%, var(--eic-global-on-secondary)) !important;
+    --color-secondary-70: color-mix(in srgb, var(--eic-global-secondary) 70%, var(--eic-global-on-secondary)) !important;
+    --color-secondary-80: color-mix(in srgb, var(--eic-global-secondary) 80%, var(--eic-global-on-secondary)) !important;
+    --color-secondary-90: color-mix(in srgb, var(--eic-global-secondary) 90%, var(--eic-global-on-secondary)) !important;
+    --color-secondary-95: color-mix(in srgb, var(--eic-global-secondary) 95%, var(--eic-global-on-secondary)) !important;
+    --color-secondary-98: color-mix(in srgb, var(--eic-global-secondary) 98%, var(--eic-global-on-secondary)) !important;
+    --color-secondary-99: color-mix(in srgb, var(--eic-global-secondary) 99%, var(--eic-global-on-secondary)) !important;
+    --color-secondary-100: var(--eic-global-on-secondary) !important;
+
+    /* --- Black/White (interpreted relative to theme) --- */
+    --color-black: var(--eic-global-background) !important; /* Theme's darkest */
+    --color-white: var(--eic-global-on-surface) !important; /* Theme's brightest text */
+
+    /* --- Neutral Color Scale --- */
+    --color-neutral-0: var(--eic-global-background) !important;
+    --color-neutral-5: color-mix(in srgb, var(--eic-global-surface) 50%, var(--eic-global-background)) !important;
+    --color-neutral-8: color-mix(in srgb, var(--eic-global-surface) 80%, var(--eic-global-background)) !important;
+    --color-neutral-10: var(--eic-global-surface) !important;
+    --color-neutral-20: var(--eic-global-surface-variant) !important;
+    --color-neutral-25: color-mix(in srgb, var(--eic-global-surface-variant) 75%, var(--eic-global-surface)) !important;
+    --color-neutral-30: color-mix(in srgb, var(--eic-global-outline-variant) 50%, var(--eic-global-surface-variant)) !important;
+    --color-neutral-35: color-mix(in srgb, var(--eic-global-outline-variant) 75%, var(--eic-global-surface-variant)) !important;
+    --color-neutral-40: var(--eic-global-outline-variant) !important;
+    --color-neutral-50: var(--eic-global-outline) !important;
+    --color-neutral-60: color-mix(in srgb, var(--eic-global-on-surface-variant) 20%, var(--eic-global-outline)) !important;
+    --color-neutral-70: var(--eic-global-on-surface-variant) !important;
+    --color-neutral-80: color-mix(in srgb, var(--eic-global-on-surface) 20%, var(--eic-global-on-surface-variant)) !important;
+    --color-neutral-90: var(--eic-global-on-surface) !important;
+    --color-neutral-95: color-mix(in srgb, var(--eic-global-on-surface) 95%, var(--eic-global-surface)) !important; /* Very light on-surface */
+    --color-neutral-98: color-mix(in srgb, var(--eic-global-on-surface) 98%, var(--eic-global-surface)) !important;
+    --color-neutral-99: color-mix(in srgb, var(--eic-global-on-surface) 99%, var(--eic-global-surface)) !important;
+    --color-neutral-100: var(--eic-global-on-surface) !important; /* For white text on dark themes, black on light */
+
+    /* --- Neutral Variant Color Scale --- */
+    --color-neutral-variant-0: var(--eic-global-background) !important;
+    --color-neutral-variant-5: color-mix(in srgb, var(--eic-global-surface) 50%, var(--eic-global-background)) !important;
+    --color-neutral-variant-10: var(--eic-global-surface) !important;
+    --color-neutral-variant-20: var(--eic-global-surface-variant) !important;
+    --color-neutral-variant-25: color-mix(in srgb, var(--eic-global-surface-variant) 80%, var(--eic-global-surface)) !important;
+    --color-neutral-variant-30: var(--eic-global-outline-variant) !important;
+    --color-neutral-variant-35: color-mix(in srgb, var(--eic-global-outline) 50%, var(--eic-global-outline-variant)) !important;
+    --color-neutral-variant-40: var(--eic-global-outline) !important;
+    --color-neutral-variant-50: color-mix(in srgb, var(--eic-global-on-surface-variant) 10%, var(--eic-global-outline)) !important;
+    --color-neutral-variant-60: var(--eic-global-on-surface-variant) !important;
+    --color-neutral-variant-70: color-mix(in srgb, var(--eic-global-on-surface) 10%, var(--eic-global-on-surface-variant)) !important;
+    --color-neutral-variant-80: var(--eic-global-on-surface) !important;
+    --color-neutral-variant-90: color-mix(in srgb, var(--eic-global-on-surface) 90%, var(--eic-global-surface)) !important;
+    --color-neutral-variant-95: color-mix(in srgb, var(--eic-global-on-surface) 95%, var(--eic-global-surface)) !important;
+    --color-neutral-variant-98: color-mix(in srgb, var(--eic-global-on-surface) 98%, var(--eic-global-surface)) !important;
+    --color-neutral-variant-99: color-mix(in srgb, var(--eic-global-on-surface) 99%, var(--eic-global-surface)) !important;
+    --color-neutral-variant-100: var(--eic-global-on-surface) !important;
+
+    /* --- Tertiary Color Scale --- */
+    --color-tertiary-0: var(--eic-global-background) !important;
+    --color-tertiary-5: color-mix(in srgb, var(--eic-global-tertiary) 5%, var(--eic-global-background)) !important;
+    --color-tertiary-10: color-mix(in srgb, var(--eic-global-tertiary) 10%, var(--eic-global-background)) !important;
+    --color-tertiary-20: color-mix(in srgb, var(--eic-global-tertiary) 20%, var(--eic-global-background)) !important;
+    --color-tertiary-25: color-mix(in srgb, var(--eic-global-tertiary) 25%, var(--eic-global-background)) !important;
+    --color-tertiary-30: color-mix(in srgb, var(--eic-global-tertiary) 30%, var(--eic-global-background)) !important;
+    --color-tertiary-35: color-mix(in srgb, var(--eic-global-tertiary) 35%, var(--eic-global-background)) !important;
+    --color-tertiary-40: var(--eic-global-tertiary) !important; /* Main tertiary */
+    --color-tertiary-50: var(--eic-global-tertiary) !important; /* Main tertiary */
+    --color-tertiary-60: color-mix(in srgb, var(--eic-global-tertiary) 60%, var(--eic-global-on-tertiary)) !important;
+    --color-tertiary-70: color-mix(in srgb, var(--eic-global-tertiary) 70%, var(--eic-global-on-tertiary)) !important;
+    --color-tertiary-80: color-mix(in srgb, var(--eic-global-tertiary) 80%, var(--eic-global-on-tertiary)) !important;
+    --color-tertiary-90: color-mix(in srgb, var(--eic-global-tertiary) 90%, var(--eic-global-on-tertiary)) !important;
+    --color-tertiary-95: color-mix(in srgb, var(--eic-global-tertiary) 95%, var(--eic-global-on-tertiary)) !important;
+    --color-tertiary-98: color-mix(in srgb, var(--eic-global-tertiary) 98%, var(--eic-global-on-tertiary)) !important;
+    --color-tertiary-99: color-mix(in srgb, var(--eic-global-tertiary) 99%, var(--eic-global-on-tertiary)) !important;
+    --color-tertiary-100: var(--eic-global-on-tertiary) !important;
+
+    /* --- Error Color Scale --- */
+    --color-error-0: var(--eic-global-background) !important;
+    --color-error-5: color-mix(in srgb, var(--eic-global-error) 5%, var(--eic-global-background)) !important;
+    --color-error-10: color-mix(in srgb, var(--eic-global-error) 10%, var(--eic-global-background)) !important;
+    --color-error-20: color-mix(in srgb, var(--eic-global-error) 20%, var(--eic-global-background)) !important;
+    --color-error-25: color-mix(in srgb, var(--eic-global-error) 25%, var(--eic-global-background)) !important;
+    --color-error-30: color-mix(in srgb, var(--eic-global-error) 30%, var(--eic-global-background)) !important;
+    --color-error-35: color-mix(in srgb, var(--eic-global-error) 35%, var(--eic-global-background)) !important;
+    --color-error-40: var(--eic-global-error) !important; /* Main error */
+    --color-error-50: var(--eic-global-error) !important; /* Main error */
+    --color-error-60: color-mix(in srgb, var(--eic-global-error) 60%, var(--eic-global-on-error)) !important;
+    --color-error-70: color-mix(in srgb, var(--eic-global-error) 70%, var(--eic-global-on-error)) !important;
+    --color-error-80: color-mix(in srgb, var(--eic-global-error) 80%, var(--eic-global-on-error)) !important;
+    --color-error-90: color-mix(in srgb, var(--eic-global-error) 90%, var(--eic-global-on-error)) !important;
+    --color-error-95: color-mix(in srgb, var(--eic-global-error) 95%, var(--eic-global-on-error)) !important;
+    --color-error-98: color-mix(in srgb, var(--eic-global-error) 98%, var(--eic-global-on-error)) !important;
+    --color-error-99: color-mix(in srgb, var(--eic-global-error) 99%, var(--eic-global-on-error)) !important;
+    --color-error-100: var(--eic-global-on-error) !important;
+    --color-error-tooltip: var(--eic-global-error) !important;
+    --color-error-tooltip-background: var(--eic-global-surface-variant) !important;
+
+    /* --- Semantic Color Roles --- */
+    --color-primary: var(--eic-global-primary) !important;
+    --color-on-primary: var(--eic-global-on-primary) !important;
+    --color-primary-container: color-mix(in srgb, var(--eic-global-primary) 20%, var(--eic-global-surface)) !important;
+    --color-on-primary-container: var(--eic-global-on-surface) !important; /* Typically on-surface for dark themes or primary for light */
+    --color-primary-fixed: var(--eic-global-primary) !important;
+    --color-primary-fixed-dim: color-mix(in srgb, var(--eic-global-primary) 70%, var(--eic-global-background)) !important;
+    --color-on-primary-fixed: var(--eic-global-on-primary) !important;
+    --color-on-primary-fixed-variant: var(--eic-global-on-primary) !important;
+    --color-inverse-primary: var(--eic-global-primary) !important; /* This might need adjustment based on light/dark theme base */
+
+    --color-secondary: var(--eic-global-secondary) !important;
+    --color-on-secondary: var(--eic-global-on-secondary) !important;
+    --color-secondary-container: color-mix(in srgb, var(--eic-global-secondary) 20%, var(--eic-global-surface)) !important;
+    --color-on-secondary-container: var(--eic-global-on-surface) !important;
+    --color-secondary-fixed: var(--eic-global-secondary) !important;
+    --color-secondary-fixed-dim: color-mix(in srgb, var(--eic-global-secondary) 70%, var(--eic-global-background)) !important;
+    --color-on-secondary-fixed: var(--eic-global-on-secondary) !important;
+    --color-on-secondary-fixed-variant: var(--eic-global-on-secondary) !important;
+
+    --color-tertiary: var(--eic-global-tertiary) !important;
+    --color-on-tertiary: var(--eic-global-on-tertiary) !important;
+    --color-tertiary-container: color-mix(in srgb, var(--eic-global-tertiary) 20%, var(--eic-global-surface)) !important;
+    --color-on-tertiary-container: var(--eic-global-on-surface) !important;
+    --color-tertiary-fixed: var(--eic-global-tertiary) !important;
+    --color-tertiary-fixed-dim: color-mix(in srgb, var(--eic-global-tertiary) 70%, var(--eic-global-background)) !important;
+    --color-on-tertiary-fixed: var(--eic-global-on-tertiary) !important;
+    --color-on-tertiary-fixed-variant: var(--eic-global-on-tertiary) !important;
+
+    /* Error Semantic Roles (already covered by scale, but can be explicit) */
+    --color-error: var(--eic-global-error) !important;
+    --color-on-error: var(--eic-global-on-error) !important;
+    --color-error-container: color-mix(in srgb, var(--eic-global-error) 20%, var(--eic-global-surface)) !important;
+    --color-on-error-container: var(--eic-global-on-surface) !important;
+
+    /* --- Surface, Background, Outline Roles --- */
+    --color-surface: var(--eic-global-surface) !important;
+    --color-on-surface: var(--eic-global-on-surface) !important;
+    --color-on-surface-variant: var(--eic-global-on-surface-variant) !important;
+    --color-surface-dim: var(--eic-global-background) !important; /* Darkest surface */
+    --color-surface-brighter: var(--eic-global-surface-variant) !important; /* Slightly lighter than main surface */
+    --color-surface-container: var(--eic-global-surface) !important;
+    --color-surface-container-high: var(--eic-global-surface-variant) !important;
+    --color-surface-container-highest: color-mix(in srgb, var(--eic-global-surface-variant) 80%, var(--eic-global-on-surface) 20%) !important; /* Even lighter */
+    --color-surface-container-low: color-mix(in srgb, var(--eic-global-surface) 80%, var(--eic-global-background) 20%) !important; /* Slightly darker than main */
+    --color-surface-container-lowest: var(--eic-global-background) !important;
+
+    --color-outline: var(--eic-global-outline) !important;
+    --color-outline-variant: var(--eic-global-outline-variant) !important;
+    --color-scrim: var(--eic-global-scrim) !important;
+    --color-shadow: var(--eic-global-shadow) !important;
+
+    --color-inverse-surface: var(--eic-global-on-surface) !important; /* Typically opposite of main surface (e.g. white if surface is black) */
+    --color-inverse-on-surface: var(--eic-global-surface) !important; /* Text on inverse surface */
+
+    /* --- Revamp Variables (map to new globals) --- */
+    --color-surface_revamp: var(--eic-global-surface) !important;
+    --color-surface-container_revamp: var(--eic-global-surface) !important;
+    --color-surface-container-high_revamp: var(--eic-global-surface-variant) !important;
+    --color-surface-container-highest_revamp: color-mix(in srgb, var(--eic-global-surface-variant) 80%, var(--eic-global-on-surface) 20%) !important;
+    --color-surface-container-low_revamp: color-mix(in srgb, var(--eic-global-surface) 80%, var(--eic-global-background) 20%) !important;
+    --color-surface-container-lowest_revamp: var(--eic-global-background) !important;
+    --color-surface-dim_revamp: var(--eic-global-background) !important;
+    --color-surface-bright_revamp: var(--eic-global-surface-variant) !important;
+    --color-run-settings-text_revamp: var(--eic-global-on-surface-variant) !important;
+
+    /* --- Gradients & Specific Colors --- */
+    --color-hero-title: var(--eic-global-primary) !important;
+    --color-bidi-icons: var(--eic-global-primary) !important;
+    --color-applet-border: var(--eic-global-outline) !important;
+    --color-applet-hover-background: var(--eic-global-surface-variant) !important;
+    --color-banner-background: var(--eic-global-outline) !important;
+    --color-banner-content: var(--eic-global-on-surface) !important;
+    --color-banner-link: var(--eic-global-primary) !important;
+    --color-user-chat-icon: var(--eic-global-on-surface-variant) !important;
+    --color-model-chat-icon: var(--eic-global-on-surface) !important;
+    --color-chart-background: var(--eic-global-surface-variant) !important;
+    --color-chat-core: var(--eic-global-surface) !important;
+    --color-model-avatar: var(--eic-global-outline) !important;
+    --color-run-button-disabled-background: var(--eic-global-surface-variant) !important;
+    --color-run-button-disabled-background-transparent: color-mix(in srgb, var(--eic-global-surface-variant) 50%, transparent) !important;
+    --color-gallery-chip-background: var(--eic-global-surface-variant) !important;
+    --color-zero-state-example-chip: var(--eic-global-surface-variant) !important;
+    --color-zero-state-example-chip-hover: var(--eic-global-outline) !important;
+    --color-zero-state-example-chip-border: transparent !important;
+    --color-prompt-input-background: var(--eic-global-surface) !important;
+    --color-header-nav-item-inactive: var(--eic-global-outline) !important;
+    --color-nav-item-hover: var(--eic-global-surface-variant) !important;
+    --color-nav-item-active: var(--eic-global-surface-variant) !important;
+    --color-get-api-key-button-background: var(--eic-global-outline) !important;
+    --color-get-api-key-button-text-color: var(--eic-global-on-surface) !important;
+    --color-stream-end-button-background: var(--eic-global-outline) !important;
+    --color-surface-bright: var(--eic-global-surface-variant) !important;
+    --color-unified-input-focus-background: var(--eic-global-surface-variant) !important;
+    --color-unified-role-text: var(--eic-global-on-surface) !important;
+    --color-unified-role-model-background: var(--eic-global-outline-variant) !important;
+    --color-unified-role-user-background: var(--eic-global-outline) !important;
+    --color-unified-role-applet-background: var(--eic-global-error) !important;
+    --shadow-tchotchke: 0px 1px 2px 0px var(--eic-global-shadow) !important;
+    --color-recorder-active: var(--eic-global-error) !important;
+    --color-recorder-inactive: color-mix(in srgb, var(--eic-global-error) 50%, var(--eic-global-background)) !important;
+    --color-recorder-active-icon: var(--eic-global-on-error) !important;
+    --color-title-animation-1: var(--eic-global-outline) !important;
+    --color-title-animation-2: var(--eic-global-background) !important;
+    --color-highlight: var(--eic-global-primary) !important;
+    --color-hot-tag: var(--eic-global-secondary) !important;
+    --user-chunk-background-color: var(--eic-global-outline) !important;
+    --color-sidebars-background: var(--eic-global-background) !important;
+    --color-sidebars-hover: var(--eic-global-surface) !important;
+    --color-gallery-background: var(--eic-global-surface) !important;
+    --color-canvas-background: var(--eic-global-surface) !important;
+    --color-gradient-background: var(--eic-global-background) !important; /* Solid color for gradients */
+    --color-prompt-input-border: var(--eic-global-outline) !important;
+    --color-canvas-background_revamp: var(--eic-global-surface) !important;
+    --color-copyright-acknowledgement-background: var(--eic-global-surface) !important;
+    --color-user-chunk-background-color-mobile: var(--eic-global-outline) !important;
+    --color-model-info-border: var(--eic-global-outline) !important;
+    --color-model-info-icons: var(--eic-global-on-surface-variant) !important;
+    --color-model-info-spark-icon: var(--eic-global-primary) !important;
+    --color-model-info-dialog-background-color: var(--eic-global-surface-variant) !important;
+    --color-model-card-spark-icon: var(--eic-global-primary) !important;
+    --color-model-card-title-header: var(--eic-global-on-surface) !important;
+    --color-model-card-subtitle-header: var(--eic-global-on-surface-variant) !important;
+    --color-model-card-background: var(--eic-global-surface-variant) !important;
+    --color-model-card-background-hover: var(--eic-global-outline) !important;
+    --color-model-card-hover-border: var(--eic-global-primary) !important;
+    --color-gemini-model-card-hover-border: var(--eic-global-primary) !important;
+    --color-model-navbar-item-color: var(--eic-global-on-surface-variant) !important;
+    --color-model-navbar-item-header-color: var(--eic-global-on-surface) !important;
+    --color-model-navbar-item-hover-color: var(--eic-global-surface-variant) !important;
+    --color-model-detail-subtitle: var(--eic-global-on-surface-variant) !important;
+    --color-model-detail-text: var(--eic-global-on-surface) !important;
+    --color-model-detail-task-chips-background-color: var(--eic-global-outline) !important;
+    --color-model-detail-task-chips-font-color: var(--eic-global-on-surface) !important;
+    --color-model-provisioned-throughput-background-first-color: var(--eic-global-outline) !important;
+    --color-model-provisioned-throughput-background-second-color: var(--eic-global-outline-variant) !important;
+    --color-thought-header: var(--eic-global-surface-variant) !important;
+    --color-thought-body: var(--eic-global-surface) !important;
+    --color-thought-divider: var(--eic-global-outline) !important;
+    --color-thought-code-block-background: var(--eic-global-background) !important;
+    --color-thought-code-block-footer: var(--eic-global-surface) !important;
+    --color-tos-border: var(--eic-global-primary) !important;
+    --color-tos-background: var(--eic-global-surface) !important;
+    --color-search-entry-point-background-color: var(--eic-global-surface-variant) !important;
+    --color-search-entry-point-border-color: var(--eic-global-outline) !important;
+    --color-search-entry-point-color: var(--eic-global-on-surface) !important;
+    --color-search-entry-point-container-background-color: var(--eic-global-surface) !important;
+    --color-search-entry-point-container-border-color: var(--eic-global-outline) !important;
+    --color-search-entry-point-chip-background-color: var(--eic-global-outline) !important;
+    --color-search-entry-point-chip-border-color: var(--eic-global-primary) !important;
+    --color-search-entry-point-chip-color: var(--eic-global-on-surface) !important;
+    --color-search-entry-point-chip-hover-background-color: var(--eic-global-outline-variant) !important;
+    --color-search-sources-background-color: var(--eic-global-surface) !important;
+    --color-search-sources-color: var(--eic-global-on-surface) !important;
+    --color-text-on-bidi-status-gradient-button: var(--eic-global-on-primary) !important;
+    --color-promo-card-background: var(--eic-global-surface-variant) !important;
+    --color-item-hover-background: var(--eic-global-surface-variant) !important;
+}

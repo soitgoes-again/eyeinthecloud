@@ -1,0 +1,13 @@
+/* eyeinthecloud.theme-template.css */
+/* Defines base structural styling for common site elements when an EIC theme is active, */
+/* telling them which EIC variables to use. This acts as a 'base theme'. */
+
+/* --- Navbar Header --- */
+/* This rule ensures the navbar header uses the EIC theme's surface color. */
+/* TODO LATER: Refactor common structural styles from theme.dos.css, theme.nature.css, */
+/* and theme.personal.css into this file if they are meant to be consistent across themes */
+/* and are just applying EIC variables to site element selectors. */
+body.eic-theme-active ms-navbar .navbar-header {
+    background-color: var(--eic-global-background) !important;
+    color: var(--eic-global-on-surface) !important; /* Text in header should also use theme color */
+}

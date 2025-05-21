@@ -1,0 +1,157 @@
+/* === modal-eye.css (REVISED based on old modules.css and intended flow) === */
+
+/* --- Eye Modal Overlay --- */
+#eic-eye-modal-overlay {
+    z-index: var(--eic-z-layer-modal-priority-overlay);
+    cursor: pointer;
+    /* Inherits display:none, opacity:0, and transition from .eic-modal-overlay in main.css */
+    /* background-color is also inherited via --eic-global-modal-overlay-bg */
+}
+/* This rule makes the overlay visible when JS adds '.visible' */
+/* It inherits 'display: flex' from .eic-modal-overlay.visible in main.css */
+#eic-eye-modal-overlay.visible {
+    opacity: 1;
+    visibility: visible; /* Ensured for clarity, though display:flex also makes it take space */
+    transition-delay: 0s; /* From old modules.css - ensures fade-in starts immediately */
+}
+
+/* --- Eye Modal Container --- */
+.eic-eye-modal {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    background: transparent !important;
+    color: var(--eic-global-on-surface);
+
+    /* Responsive square sizing: fit to viewport, always square, max 90vmin */
+    width: min(90vmin, 98vw, 98vh);
+    height: min(90vmin, 98vw, 98vh);
+    aspect-ratio: 1 / 1;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.9);
+    
+    /* Make the actual clickable area smaller than the container size */
+    pointer-events: none;
+}
+
+/* --- SVG Background --- */
+.eic-modal-svg-background {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    display: block;
+    overflow: hidden;
+    transition: opacity 0.5s ease-in-out;
+    aspect-ratio: 1 / 1;
+}
+.eic-modal-svg-background svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* --- Textarea within the Eye Modal --- */
+#eic-eye-modal-textarea {
+    position: relative;
+    z-index: 1;
+    width: 60%;
+    aspect-ratio: 1 / 1;
+    max-width: 90%;
+    max-height: 90%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    padding: 12px;
+    background-color: var(--eic-global-surface-variant-alt);
+    border-radius: var(--eic-global-shape-radius-small);
+    border: 1px solid var(--eic-global-outline-variant);
+    resize: none;
+    font-size: var(--eic-global-font-size);
+    color: var(--eic-global-on-surface);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    pointer-events: auto; /* Enable pointer events for the textarea */
+    cursor: text; /* Show text cursor over the textarea */
+}
+#eic-eye-modal-textarea.eic-textarea-visible {
+    opacity: 0.75; /* For 25% transparency, as per your intent */
+    visibility: visible;
+    transition-delay: 0s; /* Show immediately when class is added */
+}
+#eic-eye-modal-textarea:focus {
+    border-color: var(--eic-global-primary); /* From .eic-textarea base */
+    box-shadow: 0 0 0 1px var(--eic-global-primary); /* From .eic-textarea base */
+}
+#eic-eye-modal-textarea.command-mode {
+    color: var(--eic-global-tertiary);
+    font-weight: bold;
+}
+
+
+/* === Keyframe Animations === */
+/* These are correctly defined from old modules.css (names eicModalZoomFadeIn/Out became eic-ai-modal-zoom-fade-in/out) */
+@keyframes eic-ai-modal-zoom-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes eic-ai-modal-zoom-fade-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+/* === Animation Application Classes === */
+/* JS should primarily use these for modal entry/exit */
+.eic-eye-modal-animate-in {
+    animation: eic-ai-modal-zoom-fade-in 0.4s ease-out forwards; /* Your current duration */
+    /* `forwards` keeps the 'to' state. `visibility: visible !important` ensures it's seen. */
+    visibility: visible !important;
+    pointer-events: none; /* By default, disable pointer events on the entire modal */
+}
+.eic-eye-modal-animate-out {
+    animation: eic-ai-modal-zoom-fade-out 0.3s ease-in forwards; /* Your current duration */
+    /* After animation, JS should call setState('idle') which ensures all visibility classes are removed,
+       reverting .eic-eye-modal to its base hidden state (opacity:0, visibility:hidden) */
+}
+
+/* === Static Visibility Class (Fallback/Alternative) === */
+/* This class was .eic-gemini-editor-modal.eic-modal-active-state in old modules.css */
+/* It provides a non-animated way to make the modal visible. */
+.eic-eye-modal.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+    /* NO transition here, should be instant if this class is used directly */
+}
+
+/* --- Cleanup of old/renamed classes if they were in your current modal-eye.css --- */
+/* Remove any rules for:
+   .eic-gemini-editor-modal (this is now .eic-eye-modal)
+   .eic-modal-overlay.eic-ai-modal-visible (overlay visibility is now #eic-eye-modal-overlay.visible and inherits from .eic-modal-overlay.visible)
+   .eic-gemini-editor-modal.eic-modal-active-state (this is now .eic-eye-modal.visible if needed, or handled by animation classes)
+   .eic-ai-modal-zoom-fade-in / .eic-ai-modal-zoom-fade-out (these were direct animation classes, now it's .eic-eye-modal-animate-in/out)
+*/

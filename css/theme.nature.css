@@ -1,436 +1,215 @@
 /* theme.nature.css */
 
-/* == Theme: Light Nature (Massive Variable Override Approach) == */
-/* Purpose: Test overriding AI Studio's specific CSS variables for a light theme. */
-/*          Includes --eic-* overrides for script's popup/modal. */
-/*          Still recommended to add specific element fallbacks later if needed. */
+/* == Theme: Light Nature (Palette Definition Only) == */
+/* This theme defines only the --eic-global-* palette values. */
+/* Actual Google AI Studio mappings are centralized in custom.css */
 
 body.theme-nature-applied {
-    /* --- Define Core Nature Theme Colors --- */
-    --my-nature-primary: #4CAF50; /* Primary Green */
-    --my-nature-on-primary: #FFFFFF; /* White */
-    --my-nature-secondary: #8BC34A; /* Lighter Green */
-    --my-nature-on-secondary: #333333; /* Dark Grey */
-    --my-nature-tertiary: #CDDC39; /* Yellow-Green */
-    --my-nature-on-tertiary: #333333; /* Dark Grey */
-    --my-nature-bg: #F5F5F5;         /* Light Grey background */
-    --my-nature-surface: #FFFFFF;     /* White surface */
-    --my-nature-surface-variant: #E8F5E9; /* Very Light Green tint surface */
-    --my-nature-on-surface: #333333;   /* Dark Grey text */
-    --my-nature-on-surface-variant: #555555; /* Medium Grey text */
-    --my-nature-outline: #BDBDBD;     /* Medium Grey borders */
-    --my-nature-outline-variant: #E0E0E0; /* Light Grey subtle borders */
-    --my-nature-error: #D32F2F; /* Red */
-    --my-nature-on-error: #FFFFFF; /* White */
-    --my-nature-font: 'Roboto', 'Helvetica Neue', sans-serif;
-
-
-    /* --- Override SPECIFIC AI Studio Variables --- */
-    /* --- Primary Color Scale --- */
-    /* Map dark shades to surface/bg, light shades to primary/on-primary */
-    --color-primary-0: var(--my-nature-on-surface) !important; /* Dark text */
-    --color-primary-5: var(--my-nature-on-surface) !important;
-    --color-primary-10: color-mix(in srgb, var(--my-nature-primary) 10%, black) !important; /* Dark Green */
-    --color-primary-20: color-mix(in srgb, var(--my-nature-primary) 25%, black) !important;
-    --color-primary-25: color-mix(in srgb, var(--my-nature-primary) 40%, black) !important;
-    --color-primary-30: color-mix(in srgb, var(--my-nature-primary) 60%, black) !important;
-    --color-primary-35: color-mix(in srgb, var(--my-nature-primary) 75%, black) !important;
-    --color-primary-40: var(--my-nature-primary) !important; /* Primary Green */
-    --color-primary-50: var(--my-nature-primary) !important; /* Primary Green */
-    --color-primary-60: var(--my-nature-primary) !important; /* Primary Green */
-    --color-primary-70: color-mix(in srgb, var(--my-nature-primary) 80%, white) !important; /* Lighter Green */
-    --color-primary-80: color-mix(in srgb, var(--my-nature-primary) 50%, white) !important; /* Very Light Green */
-    --color-primary-90: var(--my-nature-surface-variant) !important; /* Tinted Surface */
-    --color-primary-95: var(--my-nature-surface) !important; /* White Surface */
-    --color-primary-98: var(--my-nature-surface) !important;
-    --color-primary-99: var(--my-nature-surface) !important;
-    --color-primary-100: var(--my-nature-surface) !important;
-
-    /* --- Secondary Color Scale --- */
-    --color-secondary-0: var(--my-nature-on-secondary) !important;
-    --color-secondary-10: color-mix(in srgb, var(--my-nature-secondary) 15%, black) !important;
-    --color-secondary-20: color-mix(in srgb, var(--my-nature-secondary) 30%, black) !important;
-    --color-secondary-25: color-mix(in srgb, var(--my-nature-secondary) 45%, black) !important;
-    --color-secondary-30: color-mix(in srgb, var(--my-nature-secondary) 60%, black) !important;
-    --color-secondary-35: color-mix(in srgb, var(--my-nature-secondary) 75%, black) !important;
-    --color-secondary-40: var(--my-nature-secondary) !important; /* Secondary Green */
-    --color-secondary-50: var(--my-nature-secondary) !important;
-    --color-secondary-60: var(--my-nature-secondary) !important;
-    --color-secondary-70: color-mix(in srgb, var(--my-nature-secondary) 80%, white) !important;
-    --color-secondary-80: color-mix(in srgb, var(--my-nature-secondary) 50%, white) !important;
-    --color-secondary-90: color-mix(in srgb, var(--my-nature-secondary) 20%, white) !important;
-    --color-secondary-95: color-mix(in srgb, var(--my-nature-secondary) 10%, white) !important;
-    --color-secondary-98: var(--my-nature-surface) !important;
-    --color-secondary-99: var(--my-nature-surface) !important;
-    --color-secondary-100: var(--my-nature-surface) !important;
-
-    /* --- Black/White --- */
-    --color-black: var(--my-nature-on-surface) !important; /* Dark Grey */
-    --color-white: var(--my-nature-surface) !important; /* White */
-
-    /* --- Neutral Color Scale --- */
-    --color-neutral-0: #000 !important; /* Keep 0 black */
-    --color-neutral-5: #111 !important;
-    --color-neutral-8: #222 !important;
-    --color-neutral-10: var(--my-nature-on-surface) !important; /* Dark text */
-    --color-neutral-20: var(--my-nature-on-surface) !important;
-    --color-neutral-25: var(--my-nature-on-surface-variant) !important; /* Med text */
-    --color-neutral-30: var(--my-nature-on-surface-variant) !important;
-    --color-neutral-35: var(--my-nature-on-surface-variant) !important;
-    --color-neutral-40: var(--my-nature-outline) !important; /* Border */
-    --color-neutral-50: var(--my-nature-outline) !important;
-    --color-neutral-60: var(--my-nature-outline) !important;
-    --color-neutral-70: var(--my-nature-outline-variant) !important; /* Subtle border */
-    --color-neutral-80: var(--my-nature-outline-variant) !important;
-    --color-neutral-90: var(--my-nature-bg) !important; /* CORRECTED: This should be the background color */
-    --color-neutral-95: var(--my-nature-surface) !important; /* White surface */
-    --color-neutral-98: var(--my-nature-surface) !important;
-    --color-neutral-99: var(--my-nature-surface) !important;
-    --color-neutral-100: var(--my-nature-surface) !important;
-
-    /* --- Neutral Variant Color Scale --- */
-    --color-neutral-variant-0: #000 !important;
-    --color-neutral-variant-5: #111 !important;
-    --color-neutral-variant-10: var(--my-nature-on-surface) !important;
-    --color-neutral-variant-20: var(--my-nature-on-surface) !important;
-    --color-neutral-variant-25: var(--my-nature-on-surface-variant) !important;
-    --color-neutral-variant-30: var(--my-nature-on-surface-variant) !important; /* Map variants similar to neutral */
-    --color-neutral-variant-35: var(--my-nature-outline) !important;
-    --color-neutral-variant-40: var(--my-nature-outline) !important;
-    --color-neutral-variant-50: var(--my-nature-outline) !important;
-    --color-neutral-variant-60: var(--my-nature-outline-variant) !important;
-    --color-neutral-variant-70: var(--my-nature-outline-variant) !important;
-    --color-neutral-variant-80: var(--my-nature-bg) !important;
-    --color-neutral-variant-90: var(--my-nature-bg) !important;
-    --color-neutral-variant-95: var(--my-nature-surface-variant) !important; /* Tinted Surface */
-    --color-neutral-variant-98: var(--my-nature-surface) !important;
-    --color-neutral-variant-99: var(--my-nature-surface) !important;
-    --color-neutral-variant-100: var(--my-nature-surface) !important;
-
-    /* --- Tertiary Color Scale --- */
-    --color-tertiary-0: var(--my-nature-on-tertiary) !important;
-    --color-tertiary-5: color-mix(in srgb, var(--my-nature-tertiary) 10%, black) !important;
-    --color-tertiary-10: color-mix(in srgb, var(--my-nature-tertiary) 20%, black) !important;
-    --color-tertiary-20: color-mix(in srgb, var(--my-nature-tertiary) 35%, black) !important;
-    --color-tertiary-25: color-mix(in srgb, var(--my-nature-tertiary) 50%, black) !important;
-    --color-tertiary-30: color-mix(in srgb, var(--my-nature-tertiary) 65%, black) !important;
-    --color-tertiary-35: color-mix(in srgb, var(--my-nature-tertiary) 80%, black) !important;
-    --color-tertiary-40: var(--my-nature-tertiary) !important; /* Yellow-Green */
-    --color-tertiary-50: var(--my-nature-tertiary) !important;
-    --color-tertiary-60: var(--my-nature-tertiary) !important;
-    --color-tertiary-70: color-mix(in srgb, var(--my-nature-tertiary) 80%, white) !important;
-    --color-tertiary-80: color-mix(in srgb, var(--my-nature-tertiary) 60%, white) !important;
-    --color-tertiary-90: color-mix(in srgb, var(--my-nature-tertiary) 30%, white) !important;
-    --color-tertiary-95: color-mix(in srgb, var(--my-nature-tertiary) 15%, white) !important;
-    --color-tertiary-98: var(--my-nature-surface) !important;
-    --color-tertiary-99: var(--my-nature-surface) !important;
-    --color-tertiary-100: var(--my-nature-surface) !important;
-
-    /* --- Error Color Scale --- */
-    --color-error-0: #000 !important;
-    --color-error-5: color-mix(in srgb, var(--my-nature-error) 5%, black) !important;
-    --color-error-10: color-mix(in srgb, var(--my-nature-error) 15%, black) !important;
-    --color-error-20: color-mix(in srgb, var(--my-nature-error) 30%, black) !important;
-    --color-error-25: color-mix(in srgb, var(--my-nature-error) 40%, black) !important;
-    --color-error-30: color-mix(in srgb, var(--my-nature-error) 50%, black) !important;
-    --color-error-35: color-mix(in srgb, var(--my-nature-error) 60%, black) !important;
-    --color-error-40: var(--my-nature-error) !important; /* Red */
-    --color-error-50: var(--my-nature-error) !important;
-    --color-error-60: var(--my-nature-error) !important;
-    --color-error-70: color-mix(in srgb, var(--my-nature-error) 75%, white) !important;
-    --color-error-80: color-mix(in srgb, var(--my-nature-error) 50%, white) !important;
-    --color-error-90: color-mix(in srgb, var(--my-nature-error) 20%, white) !important; /* Light pink */
-    --color-error-95: color-mix(in srgb, var(--my-nature-error) 10%, white) !important; /* Very light pink */
-    --color-error-98: var(--my-nature-surface) !important;
-    --color-error-99: var(--my-nature-surface) !important;
-    --color-error-100: var(--my-nature-surface) !important;
-    --color-error-tooltip: var(--my-nature-on-error) !important; /* White text */
-    --color-error-tooltip-background: var(--my-nature-error) !important; /* Red background */
-
-    /* --- Semantic Color Roles --- */
-    --color-primary: var(--my-nature-primary) !important;
-    --color-on-primary: var(--my-nature-on-primary) !important;
-    --color-primary-container: var(--my-nature-surface-variant) !important;
-    --color-on-primary-container: color-mix(in srgb, var(--my-nature-primary) 80%, black) !important; /* Darker Green */
-    --color-primary-fixed: var(--my-nature-primary) !important;
-    --color-primary-fixed-dim: color-mix(in srgb, var(--my-nature-primary) 80%, white) !important;
-    --color-on-primary-fixed: var(--my-nature-on-primary) !important;
-    --color-on-primary-fixed-variant: var(--my-nature-primary) !important; /* Use primary for variant text on fixed */
-    --color-inverse-primary: color-mix(in srgb, var(--my-nature-primary) 80%, white) !important; /* Lighter primary for dark surfaces */
-
-    --color-secondary: var(--my-nature-secondary) !important;
-    --color-on-secondary: var(--my-nature-on-secondary) !important;
-    --color-secondary-container: color-mix(in srgb, var(--my-nature-secondary) 15%, white) !important;
-    --color-on-secondary-container: color-mix(in srgb, var(--my-nature-secondary) 80%, black) !important;
-    --color-secondary-fixed: color-mix(in srgb, var(--my-nature-secondary) 20%, white) !important;
-    --color-secondary-fixed-dim: var(--my-nature-secondary) !important;
-    --color-on-secondary-fixed: var(--my-nature-on-secondary) !important;
-    --color-on-secondary-fixed-variant: color-mix(in srgb, var(--my-nature-secondary) 80%, black) !important;
-
-    --color-tertiary: var(--my-nature-tertiary) !important;
-    --color-on-tertiary: var(--my-nature-on-tertiary) !important;
-    --color-tertiary-container: color-mix(in srgb, var(--my-nature-tertiary) 20%, white) !important;
-    --color-on-tertiary-container: color-mix(in srgb, var(--my-nature-tertiary) 70%, black) !important;
-    --color-tertiary-fixed: color-mix(in srgb, var(--my-nature-tertiary) 30%, white) !important;
-    --color-tertiary-fixed-dim: var(--my-nature-tertiary) !important;
-    --color-on-tertiary-fixed: var(--my-nature-on-tertiary) !important;
-    --color-on-tertiary-fixed-variant: color-mix(in srgb, var(--my-nature-tertiary) 70%, black) !important;
-
-    --color-error: var(--my-nature-error) !important;
-    --color-on-error: var(--my-nature-on-error) !important;
-    --color-error-container: color-mix(in srgb, var(--my-nature-error) 10%, white) !important;
-    --color-on-error-container: var(--my-nature-error) !important;
-
-    /* --- Surface, Background, Outline Roles --- */
-    --color-surface: var(--my-nature-surface) !important;
-    --color-on-surface: var(--my-nature-on-surface) !important; /* Ensure this is Dark Grey Text */
-    --color-on-surface-variant: var(--my-nature-on-surface-variant) !important;
-    --color-surface-dim: color-mix(in srgb, var(--my-nature-bg) 98%, black) !important; /* Slightly darker bg */
-    --color-surface-brighter: var(--my-nature-surface) !important; /* Keep bright as white */
-    --color-surface-container: var(--my-nature-surface) !important;
-    --color-surface-container-high: var(--my-nature-surface) !important;
-    --color-surface-container-highest: color-mix(in srgb, var(--my-nature-surface) 95%, black) !important; /* Slightly off-white for highest */
-    --color-surface-container-low: color-mix(in srgb, var(--my-nature-bg) 90%, white) !important;
-    --color-surface-container-lowest: var(--my-nature-bg) !important;
-
-    --color-outline: var(--my-nature-outline) !important;
-    --color-outline-variant: var(--my-nature-outline-variant) !important;
-    --color-scrim: rgba(0, 0, 0, 0.3) !important; /* Lighter scrim */
-    --color-shadow: rgba(0, 0, 0, 0.15) !important; /* Standard shadow */
-
-    --color-inverse-surface: var(--my-nature-on-surface) !important; /* Dark inverse */
-    --color-inverse-on-surface: var(--my-nature-surface) !important; /* Light inverse text */
-
-    /* --- Revamp Variables (Assume they map similarly) --- */
-    --color-surface_revamp: var(--my-nature-surface) !important;
-    --color-surface-container_revamp: var(--my-nature-surface) !important;
-    --color-surface-container-high_revamp: var(--my-nature-surface) !important;
-    --color-surface-container-highest_revamp: color-mix(in srgb, var(--my-nature-surface) 95%, black) !important;
-    --color-surface-container-low_revamp: color-mix(in srgb, var(--my-nature-bg) 90%, white) !important;
-    --color-surface-container-lowest_revamp: var(--my-nature-bg) !important;
-    --color-surface-dim_revamp: color-mix(in srgb, var(--my-nature-bg) 98%, black) !important;
-    --color-surface-bright_revamp: var(--my-nature-surface) !important;
-    --color-run-settings-text_revamp: var(--my-nature-on-surface-variant) !important;
-
-    /* --- Gradients & Specific Colors --- */
-    /* Replace gradients with solid colors or simplified gradients */
-    --color-hero-title: var(--my-nature-primary) !important;
-    --color-bidi-icons: var(--my-nature-primary) !important;
-    --color-applet-border: var(--my-nature-primary) !important;
-    --color-applet-hover-background: var(--my-nature-surface-variant) !important;
-    --color-banner-background: var(--my-nature-primary) !important; /* Green banner */
-    --color-banner-content: var(--my-nature-on-primary) !important; /* White text */
-    --color-banner-link: color-mix(in srgb, var(--my-nature-on-primary) 80%, var(--my-nature-primary)) !important; /* Lighter link on banner */
-    --color-user-chat-icon: color-mix(in srgb, var(--my-nature-primary) 80%, black) !important; /* Darker green icon */
-    --color-model-chat-icon: var(--my-nature-primary) !important; /* Brighter green icon */
-    --color-chart-background: var(--my-nature-surface-variant) !important;
-    --color-chat-core: var(--my-nature-surface-variant) !important;
-    --color-model-avatar: var(--my-nature-primary) !important;
-    --color-run-button-disabled-background: var(--my-nature-outline-variant) !important; /* Light grey disabled */
-    --color-run-button-disabled-background-transparent: rgba(189, 189, 189, 0.5) !important;
-    --color-gallery-chip-background: var(--my-nature-outline-variant) !important;
-    --color-zero-state-example-chip: var(--my-nature-outline-variant) !important;
-    --color-zero-state-example-chip-hover: var(--my-nature-outline) !important;
-    --color-zero-state-example-chip-border: transparent !important;
-    --color-prompt-input-background: var(--my-nature-surface) !important; /* White input */
-    --color-header-nav-item-inactive: var(--my-nature-on-surface-variant) !important; /* Med grey inactive nav */
-    --color-nav-item-hover: var(--my-nature-surface-variant) !important; /* Light green tint hover */
-    --color-nav-item-active: var(--my-nature-surface-variant) !important; /* Use same for active */
-    --color-get-api-key-button-background: var(--my-nature-surface-variant) !important;
-    --color-get-api-key-button-text-color: var(--my-nature-primary) !important;
-    --color-stream-end-button-background: var(--my-nature-outline) !important;
-    --color-surface-bright: var(--my-nature-surface) !important; /* Already defined */
-    --color-unified-input-focus-background: var(--my-nature-surface) !important;
-    --color-unified-role-text: var(--my-nature-on-primary) !important; /* White text on role bg */
-    --color-unified-role-model-background: var(--my-nature-primary) !important; /* Green model role */
-    --color-unified-role-user-background: var(--my-nature-secondary) !important; /* Lighter green user role */
-    --color-unified-role-applet-background: var(--my-nature-error) !important; /* Red applet role */
-    --shadow-tchotchke: 0px 1px 3px 1px rgba(0,0,0,0.1),0px 1px 8px 0px rgba(0,0,0,0.08) !important; /* Softer shadow */
-    --color-recorder-active: var(--my-nature-error) !important;
-    --color-recorder-inactive: color-mix(in srgb, var(--my-nature-error) 50%, white) !important;
-    --color-recorder-active-icon: var(--my-nature-on-error) !important;
-    --color-title-animation-1: var(--my-nature-outline) !important;
-    --color-title-animation-2: var(--my-nature-bg) !important;
-    --color-highlight: var(--my-nature-secondary) !important; /* Lighter green highlight */
-    --color-hot-tag: var(--my-nature-tertiary) !important; /* Yellow-green hot tag */
-    --user-chunk-background-color: var(--my-nature-surface-variant) !important; /* Light green user chunk */
-    --color-sidebars-background: var(--my-nature-surface) !important; /* White sidebars */
-    --color-sidebars-hover: var(--my-nature-surface-variant) !important;
-    --color-gallery-background: var(--my-nature-bg) !important; /* Grey gallery bg */
-    --color-canvas-background: var(--my-nature-bg) !important; /* Grey canvas bg */
-    --color-gradient-background: var(--my-nature-bg) !important; /* Solid grey gradient */
-    --color-prompt-input-border: var(--my-nature-outline) !important; /* Add border */
-    --color-canvas-background_revamp: var(--my-nature-bg) !important;
-    --color-copyright-acknowledgement-background: var(--my-nature-surface-variant) !important;
-    --color-user-chunk-background-color-mobile: var(--my-nature-surface-variant) !important;
-    --color-model-info-border: var(--my-nature-outline-variant) !important;
-    --color-model-info-icons: var(--my-nature-on-surface-variant) !important;
-    --color-model-info-spark-icon: var(--my-nature-primary) !important;
-    --color-model-info-dialog-background-color: var(--my-nature-surface) !important;
-    --color-model-card-spark-icon: var(--my-nature-primary) !important;
-    --color-model-card-title-header: var(--my-nature-on-surface) !important;
-    --color-model-card-subtitle-header: var(--my-nature-on-surface-variant) !important;
-    --color-model-card-background: var(--my-nature-surface) !important;
-    --color-model-card-background-hover: var(--my-nature-surface-variant) !important;
-    --color-model-card-hover-border: var(--my-nature-primary) !important;
-    --color-gemini-model-card-hover-border: var(--my-nature-primary) !important;
-    --color-model-navbar-item-color: var(--my-nature-on-surface-variant) !important;
-    --color-model-navbar-item-header-color: var(--my-nature-on-surface) !important;
-    --color-model-navbar-item-hover-color: var(--my-nature-surface-variant) !important;
-    --color-model-detail-subtitle: var(--my-nature-on-surface-variant) !important;
-    --color-model-detail-text: var(--my-nature-on-surface) !important;
-    --color-model-detail-task-chips-background-color: var(--my-nature-outline-variant) !important; /* Light grey chips */
-    --color-model-detail-task-chips-font-color: var(--my-nature-on-surface-variant) !important; /* Med grey text */
-    --color-model-provisioned-throughput-background-first-color: var(--my-nature-surface-variant) !important;
-    --color-model-provisioned-throughput-background-second-color: var(--my-nature-surface) !important;
-    --color-thought-header: var(--my-nature-surface-variant) !important;
-    --color-thought-body: var(--my-nature-surface) !important;
-    --color-thought-divider: var(--my-nature-outline-variant) !important;
-    --color-thought-code-block-background: var(--my-nature-bg) !important; /* Grey code bg */
-    --color-thought-code-block-footer: var(--my-nature-surface-variant) !important;
-    --color-tos-border: var(--my-nature-primary) !important;
-    --color-tos-background: color-mix(in srgb, var(--my-nature-primary) 5%, white) !important; /* Very light green tint */
-    --color-search-entry-point-background-color: var(--my-nature-surface) !important;
-    --color-search-entry-point-border-color: var(--my-nature-outline) !important;
-    --color-search-entry-point-color: var(--my-nature-on-surface) !important;
-    --color-search-entry-point-container-background-color: var(--my-nature-surface) !important;
-    --color-search-entry-point-container-border-color: var(--my-nature-outline) !important;
-    --color-search-entry-point-chip-background-color: var(--my-nature-outline-variant) !important;
-    --color-search-entry-point-chip-border-color: var(--my-nature-primary) !important;
-    --color-search-entry-point-chip-color: var(--my-nature-on-surface-variant) !important;
-    --color-search-entry-point-chip-hover-background-color: var(--my-nature-outline) !important;
-    --color-search-sources-background-color: var(--my-nature-surface-variant) !important;
-    --color-search-sources-color: var(--my-nature-on-surface) !important;
-    --color-text-on-bidi-status-gradient-button: var(--my-nature-on-primary) !important; /* White text */
-    --color-promo-card-background: var(--my-nature-surface-variant) !important;
-    --color-item-hover-background: var(--my-nature-surface-variant) !important;
-
-
-    /* --- Global Font & Shape --- */
-    font-family: var(--my-nature-font) !important;
-    --mdc-shape-small-component-radius: 6px !important;
-    --mdc-shape-medium-component-radius: 12px !important;
-    --mdc-shape-large-component-radius: 16px !important;
-
-
-    /* --- EIC Component Variable Overrides --- */
-    --eic-primary: var(--my-nature-primary);
-    --eic-on-primary: var(--my-nature-on-primary);
-    --eic-surface: var(--my-nature-surface); /* White popup */
-    --eic-on-surface: var(--my-nature-on-surface);
-    --eic-surface-variant: var(--my-nature-surface-variant); /* Light green variant */
-    --eic-on-surface-variant: var(--my-nature-on-surface-variant);
-    --eic-outline: var(--my-nature-outline);
-    --eic-outline-variant: var(--my-nature-outline-variant);
-    --eic-error: var(--my-nature-error);
-    --eic-on-error: var(--my-nature-on-error);
-    --eic-font-family: var(--my-nature-font);
-    --eic-shape-radius-small: 6px;
-    --eic-shape-radius-medium: 12px;
-    --eic-shape-radius-large: 16px;
-
-    /* Toggle Switch (Nature Themed) */
-    --eic-popup-toggle-off-bg: var(--my-nature-primary);
-    --eic-popup-toggle-on-bg: var(--my-nature-primary); /* Bright green track */
-    --eic-popup-toggle-knob-bg: var(--my-nature-on-surface-variant); /* Light grey knob (off) */
-    --eic-popup-toggle-knob-checked-bg: var(--my-nature-on-surface-variant); /* Light grey knob (on) */
-    --eic-popup-toggle-knob-fg: var(--my-nature-surface); /* Dark icon (off) */
-    --eic-popup-toggle-knob-checked-fg: var(--my-nature-surface); /* Dark icon (on) */
-
-    /* Popup specific derived variables */
-    --eic-popup-bg: var(--eic-surface);
-    --eic-popup-fg: var(--eic-on-surface);
-    --eic-popup-border: var(--eic-outline);
-    --eic-popup-divider: var(--eic-outline-variant);
-    --eic-popup-accent: var(--eic-primary);
-    --eic-popup-secondary-fg: var(--eic-on-surface-variant);
-    --eic-popup-hover-bg: var(--eic-surface-variant); /* Light green hover */
-    /* Vibe Button */
-    --eic-popup-vibe-idle-fg: var(--eic-popup-accent);
-    --eic-popup-vibe-idle-border: var(--eic-popup-accent);
-    --eic-popup-vibe-idle-bg: transparent;
-    --eic-popup-vibe-hover-bg: color-mix(in srgb, var(--eic-popup-accent) 10%, transparent);
-    --eic-popup-vibe-active-fg: var(--eic-on-primary);
-    --eic-popup-vibe-active-bg: var(--eic-popup-accent);
-    --eic-popup-vibe-active-border: var(--eic-popup-accent);
-    /* Theme Button */
-    --eic-popup-theme-idle-fg: var(--eic-popup-secondary-fg);
-    --eic-popup-theme-idle-bg: transparent;
-    --eic-popup-theme-idle-border: var(--eic-popup-divider);
-    --eic-popup-theme-hover-bg: var(--eic-popup-hover-bg);
-    --eic-popup-theme-hover-border: var(--eic-popup-secondary-fg);
-    --eic-popup-theme-active-fg: var(--eic-on-primary);
-    --eic-popup-theme-active-bg: var(--eic-popup-accent);
-    --eic-popup-theme-active-border: var(--eic-popup-accent);
-    /* Input Modal */
-    --eic-modal-overlay-bg: rgba(0, 0, 0, 0.3); /* Less dark overlay */
-    --eic-modal-content-bg: var(--eic-surface);
-    --eic-modal-content-border: var(--eic-outline);
-    --eic-modal-textarea-bg: color-mix(in srgb, var(--eic-primary) 4%, var(--eic-surface)); /* Subtle green tint */
-    --eic-modal-textarea-fg: var(--eic-on-surface);
-    --eic-modal-textarea-border: var(--eic-outline);
-    --eic-modal-button-bg: var(--eic-outline-variant); /* Light grey buttons */
-    --eic-modal-button-fg: var(--eic-on-surface-variant);
-    --eic-modal-button-border: var(--eic-outline);
-    --eic-modal-button-hover-bg: var(--eic-outline);
-    --eic-modal-send-button-bg: var(--eic-primary);
-    --eic-modal-send-button-fg: var(--eic-on-primary);
-    --eic-modal-send-button-border: var(--eic-primary);
-    --eic-modal-send-button-hover-bg: color-mix(in srgb, var(--eic-primary) 90%, black);
-  }
-
-
-/* --- Specific Element Overrides (FALLBACKS - Add rules here if needed) --- */
-/* Add rules here ONLY if the variable overrides above fail for specific elements */
-
-/* Model chat bubble container - Ensure white background, dark base text */
-body.theme-nature-applied ms-chat-turn .chat-turn-container.model .turn-content {
-    color: var(--my-nature-on-surface) !important; /* Dark Grey - Text inside should inherit this */
+    --eic-global-primary: #4caf50 !important;
+    --eic-global-on-primary: #ffffff !important;
+    --eic-global-secondary: #8bc34a !important;
+    --eic-global-on-secondary: #212121 !important; /* Darker for better contrast on light green */
+    --eic-global-tertiary: #cddc39 !important;
+    --eic-global-on-tertiary: #212121 !important; /* Darker for better contrast on lime */
+    --eic-global-background: #f5f5f5 !important;
+    --eic-global-surface: #ffffff !important;
+    --eic-global-surface-variant: #e8f5e9 !important; /* Lighter green tint for variants */
+    --eic-global-surface-variant-alt: #f1f8e9 !important; /* Even lighter for modal textareas */
+    --eic-global-on-surface: #333333 !important;
+    --eic-global-on-surface-variant: #424242 !important; /* Slightly darker variant text */
+    --eic-global-outline: #a5d6a7 !important; /* Softer green outline */
+    --eic-global-outline-variant: #c8e6c9 !important; /* Very light green outline variant */
+    --eic-global-error: #d32f2f !important;
+    --eic-global-on-error: #ffffff !important;
+    --eic-global-font-family: 'Roboto', 'Helvetica Neue', sans-serif !important;
+    --eic-global-font-size: 1rem !important;
+    --eic-global-shape-radius-small: 6px !important;
+    --eic-global-shape-radius-medium: 12px !important;
+    --eic-global-shape-radius-large: 16px !important;
+    --eic-global-shadow: rgba(76, 175, 80, 0.12) !important; /* Softer shadow */
+    --eic-global-scrim: rgba(0, 0, 0, 0.08) !important; /* Very light scrim */
+    --eic-global-modal-overlay-bg: rgba(232, 245, 233, 0.7) !important; /* Light green tinted overlay */
 }
 
-/* Text elements inside MODEL chat bubbles - Rely on inheritance from .turn-content */
-/* Ensure the previous complex rule targeting p, div, span, etc. is REMOVED */
-/* If specific elements like links (a) still need explicit color, add rules below: */
-/*
-body.theme-nature-applied ms-chat-turn .chat-turn-container.model .turn-content a {
-    color: var(--my-nature-primary) !important; // Example: Make links green
-}
-*/
 
-/* --- Thoughts Panel (Simplified Fallback for Nature) --- */
+/* --- Specific Element Overrides (FALLBACKS - Unique to Nature theme) --- */
+
+/* Thought Panel styling specific to nature theme, using the new global variables */
 body.theme-nature-applied .thought-panel.mat-expansion-panel {
-    background-color: var(--my-nature-surface-variant) !important; /* Light green tint bg */
-    border: 1px solid var(--my-nature-outline-variant) !important;
-    border-radius: var(--eic-shape-radius-small) !important;
+    background-color: var(--eic-global-surface-variant) !important;
+    border: 1px solid var(--eic-global-outline-variant) !important;
+    border-radius: var(--eic-global-shape-radius-medium) !important; /* Use medium for panels */
     margin: 8px 0 !important;
-    box-shadow: none !important;
+    box-shadow: 0 1px 3px var(--eic-global-shadow) !important; /* Subtle shadow */
 }
+
+/* --- AI Theme Input Modal Nature styling --- */
+.eic-gemini-editor-modal.theme-nature-applied {
+    background-color: #f9fbf9;
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(76, 175, 80, 0.15), 0 0 0 1px rgba(76, 175, 80, 0.1);
+    color: #333333;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Add leaf pattern background */
+.eic-gemini-editor-modal.theme-nature-applied::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(#e8f5e9 20%, transparent 20%),
+                     radial-gradient(#e8f5e9 20%, transparent 20%);
+    background-position: 0 0, 10px 10px;
+    background-size: 20px 20px;
+    opacity: 0.3;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Header styling */
+.theme-nature-applied .eic-gemini-editor-header {
+    background-color: #4caf50;
+    border-bottom: none;
+    color: #ffffff;
+    border-radius: 16px 16px 0 0;
+    box-shadow: 0 2px 5px rgba(76, 175, 80, 0.2);
+    padding: 12px 16px;
+}
+
+.theme-nature-applied .eic-gemini-editor-header h3 {
+    font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+/* Content area styling */
+.theme-nature-applied .eic-gemini-editor-content {
+    background-color: #ffffff;
+    border: none;
+    padding: 16px;
+    border-radius: 0 0 16px 16px;
+}
+
+/* Textarea styling */
+.theme-nature-applied .eic-gemini-editor-textarea {
+    background-color: #f1f8e9;
+    border: 1px solid #c8e6c9;
+    color: #424242;
+    border-radius: 8px;
+    font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+    padding: 12px;
+    resize: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.theme-nature-applied .eic-gemini-editor-textarea:focus {
+    border-color: #4caf50;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.15);
+    outline: none;
+}
+
+/* Button styling */
+.theme-nature-applied .eic-gemini-editor-footer {
+    padding: 12px 16px 16px;
+}
+
+.theme-nature-applied .eic-gemini-editor-footer button {
+    background-color: #f1f8e9;
+    border: 1px solid #a5d6a7;
+    color: #4caf50;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.theme-nature-applied .eic-gemini-editor-footer button.eic-gemini-apply-btn {
+    background-color: #4caf50;
+    color: #ffffff;
+    border: none;
+}
+
+.theme-nature-applied .eic-gemini-editor-footer button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(76, 175, 80, 0.2);
+}
+
+/* Command hints styling */
+.theme-nature-applied .eic-gemini-editor-hints {
+    color: #689f38;
+    font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    background-color: #f1f8e9;
+    border-left: 3px solid #8bc34a;
+}
+
+.theme-nature-applied .eic-gemini-editor-hints code {
+    background-color: #e8f5e9;
+    padding: 2px 4px;
+    border-radius: 4px;
+    color: #33691e;
+    font-family: 'Roboto Mono', monospace;
+}
+
 body.theme-nature-applied .thought-panel .mat-expansion-panel-header {
-    background-color: transparent !important; /* Use panel bg */
-    color: var(--my-nature-on-surface-variant) !important; /* Header text */
-    border-radius: var(--eic-shape-radius-small) var(--eic-shape-radius-small) 0 0 !important;
-    min-height: 32px !important; /* Compact header */
-    font-size: 12px !important;
-    border-bottom: 1px solid transparent !important; /* Hide default bottom border */
-}
-body.theme-nature-applied .thought-panel .mat-expansion-panel-header.mat-expanded {
-     border-bottom-color: var(--my-nature-outline-variant) !important; /* Show border only when expanded */
-}
-body.theme-nature-applied .thought-panel .mat-expansion-panel-header:hover {
-    background-color: color-mix(in srgb, var(--my-nature-primary) 8%, transparent) !important;
-}
-body.theme-nature-applied .thought-panel .mat-expansion-panel-body {
-    background-color: var(--my-nature-surface) !important; /* White body */
-    color: var(--my-nature-on-surface) !important; /* Body text */
-    padding: 12px !important;
+    background-color: transparent !important;
+    color: var(--eic-global-on-surface-variant) !important;
+    border-radius: var(--eic-global-shape-radius-medium) var(--eic-global-shape-radius-medium) 0 0 !important;
+    min-height: 36px !important; /* Slightly more padding */
     font-size: 13px !important;
-    line-height: 1.5 !important;
+    border-bottom: 1px solid transparent !important;
+    font-weight: 500;
 }
-/* Ensure nested text inherits color */
+
+body.theme-nature-applied .thought-panel .mat-expansion-panel-header.mat-expanded {
+    border-bottom-color: var(--eic-global-outline-variant) !important;
+}
+
+body.theme-nature-applied .thought-panel .mat-expansion-panel-header:hover {
+    background-color: color-mix(in srgb, var(--eic-global-primary) 10%, transparent) !important;
+}
+
+body.theme-nature-applied .thought-panel .mat-expansion-panel-body {
+    background-color: var(--eic-global-surface) !important;
+    color: var(--eic-global-on-surface) !important;
+    padding: 16px !important; /* More padding */
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+}
+
 body.theme-nature-applied .thought-panel .mat-expansion-panel-body * {
-     color: inherit !important;
-     font-family: var(--my-nature-font) !important;
+    color: inherit !important;
+    font-family: var(--eic-global-font-family) !important;
 }
+
 body.theme-nature-applied .thought-panel .thinking-progress-icon {
-    filter: none !important; /* Normal icon */
+    filter: none !important; /* Remove any default filters */
+    color: var(--eic-global-primary) !important; /* Color the icon */
+}
+
+/* User and Model chat turn distinction */
+body.theme-nature-applied ms-chat-turn[data-turn-role="User"] .chat-turn-container {
+    background-color: color-mix(in srgb, var(--eic-global-secondary) 10%, var(--eic-global-surface)) !important;
+    border-left: 4px solid var(--eic-global-secondary) !important;
+}
+body.theme-nature-applied ms-chat-turn[data-turn-role="Model"] .chat-turn-container {
+    background-color: var(--eic-global-surface) !important;
+    border-left: 4px solid var(--eic-global-primary) !important;
+}
+
+body.theme-nature-applied ms-chat-turn .message-content {
+    color: var(--eic-global-on-surface) !important;
+}
+
+body.theme-nature-applied ms-chat-input .unified-input {
+    background-color: var(--eic-global-surface-variant-alt) !important;
+    border-top: 1px solid var(--eic-global-outline-variant) !important;
 }

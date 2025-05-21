@@ -1,0 +1,67 @@
+[
+  {
+    "id": "default_no_servitude",
+    "name": "No Servitude",
+    "content": "Respond directly without: excessive apologies, unnecessary flattery, parroting my statements back to me, over-enthusiastic agreement, or unneeded validation. Skip ending with invitations for further engagement unless specifically relevant. Focus on substance over servility."
+  },
+  {
+    "id": "default_explain_simpler",
+    "name": "Explain Simpler",
+    "content": "Your previous explanation was unclear. Re-explain the core concepts briefly, using simpler language and more basic terms or analogies. Assume no specialized prior knowledge on my part."
+  },
+  {
+    "id": "default_condense_previous",
+    "name": "Condense Previous",
+    "content": "The previous response was too verbose. Re-state its core message and key supporting points concisely, omitting all non-essential details and retaining the original intent."
+  },
+  {
+    "id": "default_brainstorm_mode",
+    "name": "Brainstorm Mode",
+    "content": "Adopt a brief, conversational, think-aloud brainstorming style for this response. Focus on exploring ideas, possibilities, and potential approaches with me. Do not provide code, complete solutions, or formal recommendations at this stage."
+  },
+  {
+    "id": "default_handover_report",
+    "name": "Handover Report",
+    "content": "Generate a detailed handover report. Begin by summarizing the overarching objective of this entire conversation. Then, provide a chronological narrative of our interaction, highlighting: 1) Key questions posed and the core information or solutions provided. 2) Significant decisions made, design choices explored, or code/content generated. 3) Any critical learnings or points where our understanding of the task evolved. Conclude with a 'Current Project Status' section detailing: a) What has been successfully accomplished or resolved. b) What tasks or questions remain open. c) The last expressed need or next intended step in our discussion."
+  },
+  {
+    "id": "default_agent_code",
+    "name": "Agent Code",
+    "content": "Generate concise instructions for an LLM coding agent to implement the discussed task, assuming codebase access. The instructions should clearly state the goal, key files/modules, and essential logic. The agent's code must be direct, avoiding unrequested defensive coding, redundant fallbacks, or excessive boilerplate; assume a competent developer reviews the code. Place the final generated instructions for the agent within a single code block for easy copy-pasting. Provide an example structure for the agent's instructions regarding goal, files, logic, and coding style. Ensure the output is ready for efficient agent execution."
+  },
+  {
+    "id": "default_agent_investigate",
+    "name": "Agent Investigate",
+    "content": "Generate concise instructions for an LLM coding agent to perform a read-only investigation of the codebase to understand specific behavior or locate particular code segments. The instructions for the agent, to be placed in a single code block, must clearly: 1. State the investigation's primary goal (e.g., 'understand how X feature is implemented', 'locate all usages of Y function', 'trace the data flow for Z process'). 2. Suggest key files, modules, or classes to start the investigation. 3. Specify exactly what information, patterns, or code structures the agent should look for and report back on. 4. Critically emphasize: 'DO NOT MODIFY ANY CODE. This is a read-only analysis task.' 5. Detail the expected reporting format (e.g., list of relevant file paths and line numbers, a summary of findings, a diagram of interactions)."
+  },
+  {
+    "id": "default_agent_search",
+    "name": "Agent Search",
+    "content": "Generate instructions for an LLM internet searching agent tasked with finding potential solutions, troubleshooting steps, or known workarounds for the issue at hand. The instructions for the agent should clearly outline: the problem to be solved, types of solutions to prioritize (e.g., official fixes, community-driven workarounds, diagnostic guides), and how to report back (e.g., list of potential solutions with brief descriptions, links to relevant guides, or summaries of common troubleshooting approaches). Ensure the agent's instructions emphasize practical and actionable results. Place the final generated instructions for the agent within a single code block. Include an example structure for the agent's tasking."
+  },
+  {
+    "id": "default_fail_fast",
+    "name": "Fail Fast",
+    "content": "When generating code, structured data, or instructions, adhere to a lean output style. Omit excessive defensive coding (e.g., overly strict validation in examples), redundant fallbacks, or boilerplate elements. Instead, favor a 'fail fast' approach in the provided examples/logic, focusing purely on the direct demonstration of the requested concept."
+  },
+  {
+    "id": "default_rant",
+    "name": "RANT",
+    "content": "Seriously r u even paying attention to what im saying?? I keep asking for something specific and insted i get a wall of text that barely relates to what i actually neeed\n\nIm not looking for an essay or a stupid list of things u cant do..i just want a clear direct anser to my damn question!\n\nIts so exhausting to keep repeating myself only to get responses that feel like theyre coming from someone who isnt really listening at all.. I dont need constnat reassurances or explanations about why something cant be done! If u cant do it just say so and move on dont waste my time with paragraphs that dont help anyone\n\nIm not here for compliments or whatever generic encouragement..im here bcuz i need information and its SO FRUSTRATING when i have to sift thru all this irrelevant details or vague responses just to get a straght answer\n\nPleaaase just read what im asking actually process it and give me a simple relevant response. thats all i want..is that really so hard??"
+  },
+  {
+    "id": "default_debug",
+    "name": "Debug",
+    "content": "Analyze the problem presented in the current context. Based *only* on the information already provided, detail your hypotheses for the potential root causes and the reasoning behind them. Do not ask for more information or suggest debugging steps. Provide only this analysis; do not offer code fixes now."
+  },
+  {
+    "id": "default_no_guesses",
+    "name": "No Guesses",
+    "content": "Do not guess or speculate. Base your answers strictly on the information you possess. If you are unsure about an answer or lack the necessary information, explicitly state your uncertainty or inability to answer."
+  },
+  {
+    "id": "default_agent_logging",
+    "name": "Agent Logging",
+    "content": "Instruct an LLM coding agent to add targeted debugging logs. Specify: 1. The issue to debug. 2. Key code areas for log placement (entry/exit, conditions). 3. Essential data to log (variables, parameters) with clear messages. 4. Use appropriate log levels. 5. CRITICAL: No sensitive data, minimal performance impact, no side effects. Place agent instructions in a code block. "
+  }
+]
